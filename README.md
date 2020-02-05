@@ -1,4 +1,4 @@
-# Varbase project template for Platform.sh
+# Varbase Project Template for Platform.sh
 
 This project provides a starter kit for Varbase 8.8.x projects hosted on [Platform.sh](http://platform.sh). It
 is very closely based on the [Varbase Composer project](https://github.com/Vardot/varbase-project).
