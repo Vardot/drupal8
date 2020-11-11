@@ -292,7 +292,8 @@
                 "bower-asset/jquery": ">=1.6",
                 "bower-asset/jquery-ui": ">=1.8"
             },
-            "type": "bower-asset"
+            "type": "bower-asset",
+            "time": "2014-12-18T23:23:56+00:00"
         },
         {
             "name": "bower-asset/objectfitpolyfill",
@@ -3249,7 +3250,8 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/block_content_permissions",
                 "issues": "https://www.drupal.org/project/issues/block_content_permissions"
-            }
+            },
+            "time": "2020-07-05T17:49:00+00:00"
         },
         {
             "name": "drupal/block_form_alter",
@@ -3891,7 +3893,8 @@
                 "source": "http://cgit.drupalcode.org/config_ignore",
                 "issues": "http://drupal.org/project/config_ignore",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2020-06-08T13:23:53+00:00"
         },
         {
             "name": "drupal/config_inspector",
@@ -4490,7 +4493,8 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/content_moderation_notifications",
                 "issues": "https://www.drupal.org/project/issues/content_moderation_notifications"
-            }
+            },
+            "time": "2020-04-30T19:54:32+00:00"
         },
         {
             "name": "drupal/content_planner",
@@ -5272,7 +5276,8 @@
             "homepage": "https://www.drupal.org/project/default_content",
             "support": {
                 "source": "https://git.drupalcode.org/project/default_content"
-            }
+            },
+            "time": "2020-08-10T22:15:19+00:00"
         },
         {
             "name": "drupal/devel",
@@ -6774,7 +6779,8 @@
             "homepage": "https://www.drupal.org/project/fast_404",
             "support": {
                 "source": "https://git.drupalcode.org/project/fast_404"
-            }
+            },
+            "time": "2020-09-14T15:03:19+00:00"
         },
         {
             "name": "drupal/field_group",
@@ -7055,7 +7061,8 @@
                 "source": "https://github.com/luksak/genpass",
                 "issues": "http://drupal.org/project/issues/genpass",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2020-04-30T16:49:57+00:00"
         },
         {
             "name": "drupal/google_analytics",
@@ -7475,7 +7482,8 @@
             "homepage": "https://www.drupal.org/project/imageapi_optimize",
             "support": {
                 "source": "https://git.drupalcode.org/project/imageapi_optimize"
-            }
+            },
+            "time": "2020-06-04T06:21:38+00:00"
         },
         {
             "name": "drupal/imagemagick",
@@ -8506,7 +8514,8 @@
             "homepage": "https://www.drupal.org/project/lb_ux",
             "support": {
                 "source": "https://git.drupalcode.org/project/lb_ux"
-            }
+            },
+            "time": "2020-09-28T20:02:34+00:00"
         },
         {
             "name": "drupal/length_indicator",
@@ -11744,7 +11753,8 @@
             "homepage": "https://www.drupal.org/project/security_review",
             "support": {
                 "source": "https://git.drupalcode.org/project/security_review"
-            }
+            },
+            "time": "2020-09-29T14:48:39+00:00"
         },
         {
             "name": "drupal/shield",
@@ -12316,7 +12326,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_auth_facebook",
                 "issues": "https://www.drupal.org/project/issues/social_auth_facebook"
-            }
+            },
+            "time": "2020-06-05T01:58:53+00:00"
         },
         {
             "name": "drupal/social_auth_google",
@@ -12429,7 +12440,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_auth_linkedin",
                 "issues": "https://www.drupal.org/project/issues/social_auth_linkedin"
-            }
+            },
+            "time": "2020-06-05T01:39:48+00:00"
         },
         {
             "name": "drupal/social_auth_twitter",
@@ -12495,7 +12507,8 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/social_auth_twitter",
                 "issues": "https://www.drupal.org/project/issues/social_auth_twitter"
-            }
+            },
+            "time": "2020-06-08T17:34:28+00:00"
         },
         {
             "name": "drupal/sophron",
@@ -12901,7 +12914,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/taxonomy_menu",
                 "issues": "http://drupal.org/project/taxonomy_menu"
-            }
+            },
+            "time": "2020-08-07T09:11:08+00:00"
         },
         {
             "name": "drupal/token",
@@ -13163,7 +13177,8 @@
             "homepage": "https://www.drupal.org/project/tour_ui",
             "support": {
                 "source": "https://git.drupalcode.org/project/tour_ui"
-            }
+            },
+            "time": "2020-05-22T16:14:25+00:00"
         },
         {
             "name": "drupal/ultimate_cron",
@@ -15159,7 +15174,8 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/views_bulk_edit",
                 "issues": "https://www.drupal.org/project/issues/views_bulk_edit?version=8.x"
-            }
+            },
+            "time": "2020-11-09T09:03:37+00:00"
         },
         {
             "name": "drupal/views_bulk_operations",
