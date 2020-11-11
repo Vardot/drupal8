@@ -1,4 +1,0 @@
-theme: current
-defaults:
-  sender: swiftmailer
-  formatter: swiftmailer

@@ -1,8 +1,0 @@
-@import "../../variables.scss";
-.text-teaser-view-mode.small {
-  .field--name-node-title {
-    h3 {
-      @include font-size($small-title-font-size);
-    }
-  }
-}

@@ -1,5 +1,0 @@
-entity.responsive_preview_device.add_form:
-  route_name: 'entity.responsive_preview_device.add_form'
-  title: 'Add Device'
-  appears_on:
-    - entity.responsive_preview_device.collection

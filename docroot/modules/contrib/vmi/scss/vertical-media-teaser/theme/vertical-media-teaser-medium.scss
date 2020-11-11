@@ -1,8 +1,0 @@
-@import "../../variables.scss";
-.vertical-media-teaser-view-mode.medium {
-  .field--name-node-title {
-    h3 {
-      @include font-size($medium-title-font-size);
-    }
-  }
-}

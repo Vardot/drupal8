@@ -1,4 +1,0 @@
-vbp_text_and_image_default:
-  css:
-    theme:
-      css/default.css: {}

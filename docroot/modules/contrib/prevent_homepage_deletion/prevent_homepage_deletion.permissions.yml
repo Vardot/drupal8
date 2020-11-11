@@ -1,4 +1,0 @@
-delete_homepage_node:
-  title: 'Delete homepage node'
-  description: 'Prevent users from deleting a homepage node.'
-  restrict access: false

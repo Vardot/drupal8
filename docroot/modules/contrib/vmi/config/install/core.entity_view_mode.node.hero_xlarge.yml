@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - node
-id: node.hero_xlarge
-label: 'Hero - xlarge'
-targetEntityType: node
-cache: true

@@ -1,7 +1,0 @@
-media_library_test.modal_link:
-  path: '/media-library-test-modal'
-  defaults:
-    _title: 'Test Modal'
-    _controller: '\Drupal\media_library_test\Controller\MediaLibraryTestController::build'
-  requirements:
-    _permission: 'access content'

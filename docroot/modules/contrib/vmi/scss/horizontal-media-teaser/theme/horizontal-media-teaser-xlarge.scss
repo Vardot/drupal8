@@ -1,8 +1,0 @@
-@import "../../variables.scss";
-.horizontal-media-teaser-view-mode.xlarge {
-  .field--name-node-title {
-    h3 {
-      @include font-size($xlarge-title-font-size);
-    }
-  }
-}

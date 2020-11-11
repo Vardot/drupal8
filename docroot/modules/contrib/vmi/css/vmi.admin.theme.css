@@ -1,7 +1,0 @@
-.user-logged-in #ds_layout_wrapper .ds-layout-preview-image {
-  width: auto;
-}
-
-.user-logged-in #ds_layout_wrapper .ds-layout-preview-image img[src*="vmi/images"] {
-  width: 400px;
-}

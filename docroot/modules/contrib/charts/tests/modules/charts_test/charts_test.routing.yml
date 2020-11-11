@@ -1,7 +1,0 @@
-charts_test.data_collector_table_test_form:
-  path: '/charts_test/data_collector_table_test_form'
-  defaults:
-    _form: '\Drupal\charts_test\Form\DataCollectorTableTestForm'
-    _title: 'Data collector table test form'
-  requirements:
-    _access: 'TRUE'

@@ -1,4 +1,0 @@
-assign roles:
-  title: 'Assign roles'
-  description: 'Allow users with the "Administer users" permission to assign a <a href="/admin/people/roleassign">restricted set of roles</a>.'
-  restrict access: true

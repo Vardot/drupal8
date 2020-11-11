@@ -1,5 +1,0 @@
-services:
-  block_content_permissions.route_subscriber:
-    class: Drupal\block_content_permissions\Routing\RouteSubscriber
-    tags:
-      - { name: event_subscriber }

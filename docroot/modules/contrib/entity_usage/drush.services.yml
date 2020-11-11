@@ -1,6 +1,0 @@
-services:
-  entity_usage.commands:
-    class: \Drupal\entity_usage\Commands\EntityUsageCommands
-    arguments: ['@entity_usage.batch_manager']
-    tags:
-      - { name: drush.command }
