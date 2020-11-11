@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Updates for the genpass module.
+ */
+
+/**
+ * Remove configuration option "genpass_entropy".
+ */
+function genpass_update_8001(&$sandbox) {
+  // Get editable configuration settings for module.
+  $config_factory = \Drupal::configFactory();
+  $genpass_configuration = $config_factory->getEditable('genpass.settings');
+
+  // Remove genpass_entropy setting. Altering entropy source is now by hook.
+  $genpass_configuration->clear('genpass_entropy');
+  $genpass_configuration->save(TRUE);
+}
+

@@ -1,0 +1,6 @@
+drd_agent.settings.form:
+  route_name: drd_agent.settings.form
+  title: 'DRD Agent'
+  parent: system.admin_config_system
+  weight: 80
+  description: 'Manage drd-agent settings'

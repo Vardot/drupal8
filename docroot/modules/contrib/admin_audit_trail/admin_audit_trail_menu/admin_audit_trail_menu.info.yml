@@ -1,0 +1,12 @@
+name: 'Admin Audit Trail Menu'
+description: 'Logs menu CUD events performed by the user.'
+type: module
+core_version_requirement: ^8 || ^9
+package: Administration
+dependencies:
+  - admin_audit_trail:admin_audit_trail
+
+# Information added by Drupal.org packaging script on 2020-07-27
+version: '1.0.0-alpha1'
+project: 'admin_audit_trail'
+datestamp: 1595869276

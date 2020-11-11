@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * The varbase_heroslider_media.module.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\media\Entity\Media;
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function varbase_heroslider_media_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'varbase_heroslider_media')
+      && count($view->result) < 1) {
+    // Default empty view style.
+    $view->element['#attached']['library'][] = 'varbase_heroslider_media/view-empty';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function varbase_heroslider_media_theme($existing, $type, $theme, $path) {
+  return [
+    'node__varbase_heroslider_media' => [
+      'template' => 'node--varbase-heroslider-media',
+      'base hook' => 'node',
+    ],
+    'media_oembed_iframe__remote_video__varbase_media_hero_slider' => [
+      'template' => 'media-oembed-iframe--remote-video--varbase-media-hero-slider',
+      'variables' => [
+        'provider' => NULL,
+        'media' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function varbase_heroslider_media_preprocess_media_oembed_iframe__remote_video__varbase_media_hero_slider(&$variables) {
+  // Send variables for the remote_video varbase media hero slier oembed iframe.
+  $query = \Drupal::request()->query;
+  $variables['type'] = $query->get('type');
+  $variables['provider'] = $query->get('provider');
+  $variables['view_mode'] = $query->get('view_mode');
+  $variables['base_path'] = base_path();
+  $variables['varbase_heroslider_media_path'] = \Drupal::service('module_handler')->getModule('varbase_heroslider_media')->getPath();
+}
+
+/**
+ * Implements hook_preprocess_node_HOOK().
+ */
+function varbase_heroslider_media_preprocess_node__varbase_heroslider_media(&$variables) {
+
+  $node = $variables['elements']['#node'];
+  $media = $node->get('field_media_single')->getValue();
+
+  if (!empty($media)) {
+    $entity = Media::load($media[0]['target_id']);
+    $entity_bundle = $entity->bundle();
+
+    if ($entity_bundle == 'remote_video') {
+      $variables['provider'] = $entity->field_provider->value;
+    }
+  }
+}

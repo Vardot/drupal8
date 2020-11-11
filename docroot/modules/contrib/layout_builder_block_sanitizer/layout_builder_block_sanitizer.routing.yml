@@ -1,0 +1,9 @@
+layout_builder_block_sanitizer.sanitizer_form:
+  path: '/admin/structure/lbbs/sanitizer'
+  defaults:
+    _form: '\Drupal\layout_builder_block_sanitizer\Form\SanitizerForm'
+    _title: 'Layout Builder Block Sanitizer Control Panel'
+  requirements:
+    _permission: 'use layout builder block sanitizer'
+  options:
+    _admin_route: TRUE

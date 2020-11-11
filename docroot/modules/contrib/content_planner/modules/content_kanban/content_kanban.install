@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Contains install and uninstall functionality of the module.
+ */
+
+use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_uninstall().
+ */
+function content_kanban_uninstall() {
+  \Drupal::configFactory()->getEditable('image.style.content_kanban_user_thumb')->delete();
+}
+
+/**
+ * Updates the Kanban log entity create new field entity id.
+ */
+function content_kanban_update_8001() {
+  $field_storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Entity ID'))
+    ->setDescription(t('The ID of the Entity this Log refers to'));
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('entity_id', 'content_kanban_log', 'content_kanban_log', $field_storage_definition);
+}
+
+/**
+ * Updates the Kanban log entity create new field entity_type.
+ */
+function content_kanban_update_8002() {
+  $field_storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Entity Type'))
+    ->setDescription(t('The type of the entity.'))
+    ->setDefaultValue('');
+  
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('entity_type', 'content_kanban_log', 'content_kanban_log', $field_storage_definition);
+}
+
+/**
+ * Flush all entities of kanban log once as content_kanban_log structure has changed
+ */
+function content_kanban_update_8003() { 
+  $database = \Drupal::database();
+  $entity_type = 'content_kanban_log';
+ 
+  $query = \Drupal::entityQuery($entity_type);
+  $ids = $query->execute();
+
+  $storage_handler = \Drupal::entityTypeManager()->getStorage($entity_type);
+  $entities = $storage_handler->loadMultiple($ids);
+  $storage_handler->delete($entities);
+}

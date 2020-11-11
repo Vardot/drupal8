@@ -1,0 +1,9 @@
+varbase_api.settings:
+  route_name: varbase_api.settings
+  title: 'Varbase API settings'
+  base_route: varbase_api.settings
+
+varbase_api.generate_keys:
+  route_name: varbase_api.generate_keys
+  title: 'Generate keys'
+  base_route: varbase_api.settings

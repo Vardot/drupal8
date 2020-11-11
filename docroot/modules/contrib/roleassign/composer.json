@@ -1,0 +1,13 @@
+{
+  "name": "drupal/roleassign",
+  "description": "Allows site administrators to further delegate the task of managing user''s roles.",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/roleassign",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/roleassign"
+  },
+  "license": "GPL-2.0+",
+  "require": {
+    "drupal/core": "^8 || ^9"
+  }
+}

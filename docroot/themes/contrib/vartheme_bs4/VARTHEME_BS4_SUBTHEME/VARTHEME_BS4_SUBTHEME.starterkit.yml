@@ -1,0 +1,144 @@
+type: theme
+base theme: vartheme_bs4
+
+name: 'VARTHEME_BS4_SUBTHEME - Subtheme of Vartheme (Bootstrap 4 - SASS)'
+description: 'Based on Bootstrap 4 framework using SASS, and extending Vartheme (Bootstrap 4 - SASS).'
+project: vartheme_bs4
+core_version_requirement: ^9
+
+regions:
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  header: 'Top Bar'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+
+libraries:
+  # Bootstrap styles and scripts libraries.
+  - VARTHEME_BS4_SUBTHEME/bootstrap-styles
+  - VARTHEME_BS4_SUBTHEME/bootstrap-scripts
+
+  # VARTHEME_BS4_SUBTHEME Global styles and scripts libraries.
+  - VARTHEME_BS4_SUBTHEME/global-styles
+  - VARTHEME_BS4_SUBTHEME/global-scripts
+  - VARTHEME_BS4_SUBTHEME/framework
+
+  # VARTHEME_BS4_SUBTHEME Varbase Bootstrap Paragraphs colors style.
+  - VARTHEME_BS4_SUBTHEME/vbp-colors
+  
+  # VARTHEME_BS4_SUBTHEME Varbase Layout Builder colors style.
+  - VARTHEME_BS4_SUBTHEME/vlb-colors
+
+  # VARTHEME_BS4_SUBTHEME Better Login style.
+  - VARTHEME_BS4_SUBTHEME/betterlogin
+  
+  # VARTHEME_BS4_SUBTHEME Varbase Media Hero Slider style.
+  - VARTHEME_BS4_SUBTHEME/heroslider
+
+  # Icons: Uncomment the following if you want to use icons.
+  #- VARTHEME_BS4_SUBTHEME/material_design_icons
+  #- VARTHEME_BS4_SUBTHEME/fontawesome
+
+  # Fonts: Uncomment the following if you want to use the roboto font.
+  #- VARTHEME_BS4_SUBTHEME/roboto
+
+libraries-override:
+  vartheme_bs4/framework: false
+  vartheme_bs4/bootstrap-styles: false
+  vartheme_bs4/bootstrap-scripts: false
+  vartheme_bs4/global-styles: false
+  vartheme_bs4/global-scripts: false
+  vartheme_bs4/vbp-colors: false
+  vartheme_bs4/vlb-colors: false
+  vartheme_bs4/betterlogin: false
+  # Heroslider: Uncomment the following to disable the vartheme_bs4/heroslider
+  #             Libraray if it was enabled in vartheme_bs4 heroslider styling.
+  # vartheme_bs4/heroslider: false
+
+  vartheme_bs4/breadcrumb: VARTHEME_BS4_SUBTHEME/breadcrumb
+  vartheme_bs4/dropbutton: VARTHEME_BS4_SUBTHEME/dropbutton
+  vartheme_bs4/file: VARTHEME_BS4_SUBTHEME/file
+  vartheme_bs4/form: VARTHEME_BS4_SUBTHEME/form
+  vartheme_bs4/indented: VARTHEME_BS4_SUBTHEME/indented
+  vartheme_bs4/maintenance_page: VARTHEME_BS4_SUBTHEME/maintenance_page
+  vartheme_bs4/node: VARTHEME_BS4_SUBTHEME/node
+  vartheme_bs4/sidebar-collapse: VARTHEME_BS4_SUBTHEME/sidebar-collapse
+  vartheme_bs4/tabs: VARTHEME_BS4_SUBTHEME/tabs
+  vartheme_bs4/verticaltabs: VARTHEME_BS4_SUBTHEME/verticaltabs
+  vartheme_bs4/alerts: VARTHEME_BS4_SUBTHEME/alerts
+  vartheme_bs4/moderation-state: VARTHEME_BS4_SUBTHEME/moderation-state
+
+  # Varbase module compnents overrides in VARTHEME_BS4_SUBTHEME.
+  varbase_bootstrap_paragraphs/vbp-colors: VARTHEME_BS4_SUBTHEME/vbp-colors
+  varbase_layout_builder/vlb-colors: VARTHEME_BS4_SUBTHEME/vlb-colors
+  betterlogin/betterlogin_css: VARTHEME_BS4_SUBTHEME/betterlogin
+  varbase_heroslider_media/general-styling: VARTHEME_BS4_SUBTHEME/heroslider
+
+ckeditor_stylesheets:
+  # Base
+  - css/base/bootstrap.base.css
+  - css/base/vartheme_bs4.base.css
+  - css/base/VARTHEME_BS4_SUBTHEME.base.css
+  # Components
+  - css/components/affix.component.css
+  - css/components/ajax.component.css
+  - css/components/alerts.component.css
+  - css/components/autocomplete.component.css
+  - css/components/book.component.css
+  - css/components/book-navigation.component.css
+  - css/components/breadcrumb.component.css
+  - css/components/bs-callouts.component.css
+  - css/components/comments.component.css
+  - css/components/contextual.component.css
+  - css/components/details.component.css
+  - css/components/dropbutton.component.css
+  - css/components/feed-icon.component.css
+  - css/components/field.component.css
+  - css/components/file.component.css
+  - css/components/form.component.css
+  - css/components/header.component.css
+  - css/components/help.component.css
+  - css/components/icons.component.css
+  - css/components/image-button.component.css
+  - css/components/indented.component.css
+  - css/components/item-list.component.css
+  - css/components/list-group.component.css
+  - css/components/navbar.admin.component.css
+  - css/components/navbar.component.css
+  - css/components/node.component.css
+  - css/components/node-preview.component.css
+  - css/components/page.component.css
+  - css/components/progress-bar.component.css
+  - css/components/search-form.component.css
+  - css/components/shortcut.component.css
+  - css/components/sidebar.component.css
+  - css/components/sidebar-collapse.component.css
+  - css/components/site-footer.component.css
+  - css/components/skip-link.component.css
+  - css/components/table.component.css
+  - css/components/tabledrag.component.css
+  - css/components/tableselect.component.css
+  - css/components/tablesort.component.css
+  - css/components/tablesort-indicator.component.css
+  - css/components/tabs.component.css
+  - css/components/textarea.component.css
+  - css/components/ui-dialog.component.css
+  - css/components/ui-widget.component.css
+  - css/components/user.component.css
+  - css/components/varicons.component.css
+  - css/components/vb-tags.component.css
+  - css/components/vertical-tabs.component.css
+  - css/components/views.component.css
+  # Layout
+  - css/layout/edge2edge.layout.css
+  - css/layout/equal-height.layout.css
+  # Theme
+  - css/theme/content.theme.css
+  - css/theme/vbp-colors.theme.css
+  - css/theme/vlb-colors.theme.css

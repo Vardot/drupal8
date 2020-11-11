@@ -1,0 +1,23 @@
+name: 'Media Hero Slider'
+description: 'This app will populate the universal implementation of a "Hero Slider" to be used on the homepage in most cases. A rich hero slider that allows you to display video and/or image slides.'
+type: module
+package: 'Varbase'
+core_version_requirement: ^9
+dependencies:
+  - varbase_media:varbase_media
+  - slick:slick
+  - slick_views:slick_views
+install:
+  - link
+  - menu_ui
+  - entityqueue
+  - rh_node
+  - field_group
+  - length_indicator
+  - advanced_text_formatter
+  - maxlength
+
+# Information added by Drupal.org packaging script on 2020-10-18
+version: '9.0.0-alpha1'
+project: 'varbase_heroslider_media'
+datestamp: 1603049600

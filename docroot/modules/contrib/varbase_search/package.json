@@ -1,0 +1,23 @@
+{
+  "name": "varbase_search",
+  "description": "Provides search configuration, and offering search capabilities.",
+  "license": "GPL-2.0",
+  "private": true,
+  "engines": {
+    "yarn": ">= 1.6",
+    "node": ">= 8.11"
+  },
+  "keywords": [
+    "Drupal",
+    "Varbase",
+    "Search",
+    "Search API"
+  ],
+  "author": "Vardot",
+  "scripts": {
+    "phpcs": "phpcs --standard=./.phpcs.xml .",
+    "phpcbf": "phpcbf --standard=./.phpcs.xml ."
+  },
+  "dependencies": {  },
+  "devDependencies": {  }
+}

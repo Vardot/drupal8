@@ -1,0 +1,17 @@
+{
+    "name": "drupal/openapi_jsonapi",
+    "description": "OpenAPI support for the JSON:API module.",
+    "type": "drupal-module",
+    "require": {
+        "drupal/openapi": "^2",
+        "drupal/schemata": "^1"
+    },
+    "minimum-stability": "dev",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Mateu Aguiló Bosch",
+            "email": "mateu.aguilo.bosch@gmail.com"
+        }
+    ]
+}

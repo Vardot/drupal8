@@ -1,0 +1,13 @@
+name: 'Webform Ajax test'
+type: module
+description: 'Support module for webform Ajax testing.'
+package: 'Webform Testing'
+core_version_requirement: ^8.8 || ^9
+dependencies:
+  - 'drupal:block'
+  - 'webform:webform'
+
+# Information added by Drupal.org packaging script on 2020-11-04
+version: '6.0.0-alpha21'
+project: 'webform'
+datestamp: 1604531936

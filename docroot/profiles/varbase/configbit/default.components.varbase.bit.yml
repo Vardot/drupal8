@@ -1,0 +1,28 @@
+# ==============================================================================
+# List of default varbase components, which they will be installed
+# when we install varbase.
+# ==============================================================================
+config_bit:
+  type: list
+  for: varbase.info.yml
+  when:
+    install_default_components: true
+    list:
+      dependencies:
+        # Enable listed Varbase modules in order at this installation step.
+        - varbase_core
+        - varbase_media
+        - varbase_editor
+        - varbase_admin
+        - varbase_email
+        - varbase_security
+        - varbase_seo
+        - varbase_webform
+        - varbase_workflow
+        - varbase_page
+        - varbase_layout_builder
+        - vlplb
+        - varbase_total_control
+        - varbase_default_content
+        - varbase_tour
+        - varbase_update_helper

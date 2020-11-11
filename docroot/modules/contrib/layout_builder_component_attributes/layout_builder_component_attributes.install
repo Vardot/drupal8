@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Provides install, uninstall, and update functions.
+ */
+
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
+use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
+
+/**
+ * Implements hook_uninstall().
+ */
+function layout_builder_component_attributes_uninstall() {
+  // Get all entity view displays.
+  $view_displays = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->loadMultiple();
+
+  // Keep track of entity types with Layout Builder-enabled bundles.
+  // The bundles themselves aren't needed.
+  $lb_entity_types = [];
+  // Loop through entity view displays, sections, and components.
+  foreach ($view_displays as $display) {
+    if (!$display instanceof LayoutBuilderEntityViewDisplay) {
+      continue;
+    }
+    if ($display->isLayoutBuilderEnabled()) {
+      $third_party_settings = $display->getThirdPartySettings('layout_builder');
+      $lb_entity_types[] = $display->getTargetEntityTypeId();
+      foreach ($third_party_settings['sections'] as $section) {
+        $components = $section->getComponents();
+        foreach ($components as $component) {
+          // Remove 'component_attributes' from 'additional'.
+          $additional = $component->get('additional');
+          unset($additional['component_attributes']);
+          $component->set('additional', $additional);
+        }
+      }
+      $display
+        ->setThirdPartySetting('layout_builder', 'sections', $third_party_settings['sections'])
+        ->save();
+    }
+  }
+  $lb_entity_types = array_unique($lb_entity_types);
+
+  foreach ($lb_entity_types as $entity_type) {
+    $entity_ids = \Drupal::entityQuery($entity_type)
+      ->exists(OverridesSectionStorage::FIELD_NAME)
+      ->execute();
+
+    // Load entities.
+    $entity_type_storage = \Drupal::EntityTypeManager()->getStorage($entity_type);
+    $entities = $entity_type_storage->loadMultiple($entity_ids);
+
+    // Loop through entities.
+    foreach ($entities as $entity) {
+      // Load all revision IDs for entity.
+      $vids = $entity_type_storage->revisionIds($entity);
+
+      // Loop over revisions, sections, and components.
+      foreach ($vids as $vid) {
+        $revision = $entity_type_storage->loadRevision($vid);
+        $sections = $revision->get('layout_builder__layout');
+        if (!empty($sections)) {
+          $sections = $revision->get('layout_builder__layout')->getSections();
+          foreach ($sections as $section) {
+            $components = $section->getComponents();
+            foreach ($components as $component) {
+              // Remove 'component_attributes' from 'additional'.
+              $additional = $component->get('additional');
+              unset($additional['component_attributes']);
+              $component->set('additional', $additional);
+            }
+          }
+          $revision->set('layout_builder__layout', $sections);
+          $revision->save();
+        }
+      }
+    }
+  }
+}

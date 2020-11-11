@@ -1,0 +1,10 @@
+<td id="{{ column_id }}" data-state_id="{{ state_id }}" class="kanban-column droppable">{{ column }}
+  {% if entities %}
+    {% for entity in entities %}
+      <div class="content-kanban-entry">
+        {{ entity }}
+      </div>
+    {% endfor %}
+
+  {% endif %}
+</td>

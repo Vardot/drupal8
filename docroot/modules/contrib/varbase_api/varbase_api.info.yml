@@ -1,0 +1,23 @@
+name: 'Varbase API'
+description: 'A JSON:API implementation with authentication and authorization that allows for easy ingestion of content by other applications.'
+type: module
+package: Varbase
+configure: varbase_api.settings
+core_version_requirement: ^9
+dependencies:
+  - drupal:jsonapi
+  - openapi:openapi
+  - openapi_jsonapi:openapi_jsonapi
+  - openapi_rest:openapi_rest
+  - openapi_ui_redoc:openapi_ui_redoc
+  - openapi_ui_swagger:openapi_ui_swagger
+  - simple_oauth:simple_oauth
+install:
+  - restui
+  - jsonapi_extras
+  - jsonapi_defaults
+
+# Information added by Drupal.org packaging script on 2020-10-18
+version: '9.0.0-alpha1'
+project: 'varbase_api'
+datestamp: 1603036273

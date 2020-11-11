@@ -1,0 +1,8 @@
+name: 'Generate Password'
+description: 'Generates a decent password when adding a new user.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+type: module
+configure: entity.user.admin_form
+dependencies:
+ - drupal:user

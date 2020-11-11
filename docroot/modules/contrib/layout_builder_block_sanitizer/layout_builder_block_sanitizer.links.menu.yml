@@ -1,0 +1,6 @@
+layout_builder_block_sanitizer.configuration:
+  title: 'Layout Builder Block Sanitizer'
+  route_name: layout_builder_block_sanitizer.sanitizer_form
+  description: 'Sanitize invalid blocks on Layout Builder-enabled nodes.'
+  parent: system.admin_config_ui
+  weight: 98

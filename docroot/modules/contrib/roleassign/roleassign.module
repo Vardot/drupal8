@@ -1,0 +1,199 @@
+<?php
+
+/**
+ * @file
+ * Allows site administrators to further delegate the task of managing user's
+ * roles.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_help().
+ */
+function roleassign_help($route_name, RouteMatchInterface $route_match) {
+  $permissions = \Drupal::service('user.permissions')->getPermissions();
+  switch ($route_name) {
+    case 'help.page.roleassign':
+      return t('
+      <p>RoleAssign specifically allows site administrators to further delegate the task of managing user\'s roles.</p>
+      <p>RoleAssign introduces a new permission called Assign roles. Users with this permission are able to assign selected roles to still other users. Only users with the Administer permissions permission may select which roles are available for assignment through this module.</p>
+      <!--break-->
+      <h2>Background</h2>
+      <p>It is possible for site administrators to delegate the user administration through the Administer users permission. But that doesn\'t include the right to assign roles to users. That is necessary if the delegatee should be able to administrate user accounts without intervention from a site administrator.</p>
+      <p>To delegate the assignment of roles, site administrators have had until now no other choice than also grant the Administer permissions permission. But that is not advisable, since it gives right to access all roles, and worse, to grant any rights to any role. That can be abused by the delegatee, who can assign himself all rights and thereby take control over the site.</p>
+      <p>This module solves this dilemma by introducing the Assign roles permission. While editing a user\'s account information, a user with this permission will be able to select roles for the user from a set of available roles. Roles available are configured by users with the Administer permissions permission.</p>
+      <h2>Configuration</h2>
+      <ol>
+        <li>Log in as site administrator.</li>
+        <li>Go to the administration page for access control and grant Assign roles permission to those roles that should be able to assign roles to other users. Notice that besides the Assign roles permission, these roles also must have the Administer users permission.</li>
+        <li>Go to the administration page for role assign and select those roles that should be available for assignment by users with Assign roles permission.</li>
+        <li>For each user that should be able to assign roles, go to the user\'s account and select a role with both the Assign roles and the Administer users permissions.</li>
+      </ol>
+      <p><strong>Beware:</strong> granting Administer users permission to users will allow them to modify admin passwords or email addresses or even delete the site administrator account. The <a href=":user_protect">User protect</a> module can prevent this.</p>
+      <h2>Usage</h2>
+      <ol>
+        <li>Log in as a user with both the Assign roles and the Administer users permissions.</li>
+        <li>To change the roles of a user, go to the user\'s account and review the assignable roles and change them as necessary.</li>
+      </ol>', [
+        ':user_protect' => 'http://drupal.org/project/userprotect',
+      ]
+    );
+    case 'roleassign.settings':
+      return t('Users with both %administer_users and %assign_roles permissions are allowed to assign the roles selected below. For more information, see the <a href=":help">help page</a>.', ['%administer_users' => $permissions['administer users']['title'], '%assign_roles' => $permissions['assign roles']['title'], ':help' => Url::fromRoute('help.page', ['name' => 'roleassign'])->toString()]);
+  }
+}
+
+/**
+ * Specify whether the current user should be restricted in the roles he/she can
+ * assign - as set by the RoleAssign configuration.
+ *
+ * @return bool
+ */
+function roleassign_restrict_access() {
+  $restrict_access = TRUE;
+  // Do nothing if the user already has 'administer permissions' permission.
+  if (\Drupal::currentUser()->hasPermission('administer permissions')) {
+    $restrict_access = FALSE;
+  }
+
+  // Do nothing if the user doesn't have both 'administer users' and
+  // 'assign roles' permissions.
+  if (!\Drupal::currentUser()->hasPermission('administer users') || !\Drupal::currentUser()->hasPermission('assign roles')) {
+    $restrict_access = FALSE;
+  }
+
+  return $restrict_access;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function roleassign_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (roleassign_restrict_access()) {
+    // Add the checkboxes to the user register and user edit form.
+    if ($form_id == 'user_register_form' || $form_id == 'user_form') {
+      // Get all roles that are available.
+      $roles = user_role_names(TRUE);
+
+      // Get roles that are available for assignment.
+      $assignable_roles = array_intersect_key($roles, array_filter(\Drupal::config('roleassign.settings')->get('roleassign_roles')));
+
+      // Get roles already assigned to the account.
+      $account = $form_state->getFormObject()->getEntity();
+      if (!empty($account->id())) {
+        $assigned_roles = $account->getRoles();
+        // Replace numeric indexes with rolenames.
+        $assigned_roles = array_combine($assigned_roles, $assigned_roles);
+
+        // An account might already have a role that isn't available for assignment
+        // through this module. Such a role is called "sticky".
+        // Get sticky roles.
+        $sticky_roles = array_diff_key($assigned_roles, $assignable_roles);
+        $sticky_roles = array_intersect_key($roles, $sticky_roles);
+      }
+
+      // Add Authenticated user role sticky roles.
+      $sticky_roles[RoleInterface::AUTHENTICATED_ID] = $roles[RoleInterface::AUTHENTICATED_ID];
+
+      // Store sticky roles in form values.
+      $form['sticky_roles'] = ['#type' => 'value', '#value' => $sticky_roles];
+
+      // Build the assign roles checkboxes.
+      $roles_field = [
+        '#type' => 'checkboxes',
+        '#title' => t('Assignable roles'),
+        '#options' => $assignable_roles,
+        '#default_value' => empty($assigned_roles) ? [] : array_keys($assigned_roles),
+        '#description' => t('The user receives the combined permissions of all roles selected here and the following roles: %roles.', ['%roles' => implode(', ', $sticky_roles)]),
+      ];
+      // The user form is sometimes within an 'account' fieldset.
+      if (isset($form['account'])) {
+        $user_form =&$form['account'];
+      }
+      else {
+        $user_form =&$form;
+      }
+
+      // Add the assign roles checkboxes to the user form, and make sure
+      // that the notify user checkbox comes last.
+      if (isset($user_form['notify'])) {
+        $notify_field = $user_form['notify'];
+        unset($user_form['notify']);
+        $user_form['roles'] = $roles_field;
+        $user_form['notify'] = $notify_field;
+      }
+      else {
+        $user_form['roles'] = $roles_field;
+      }
+    }
+    elseif (\Drupal::moduleHandler()->moduleExists('cas') && $form_id == 'bulk_add_cas_users') {
+      // Get all roles that are available.
+      $roles = user_role_names(TRUE);
+
+      // Get roles that are available for assignment.
+      $assignable_roles = array_intersect_key($roles, array_filter(\Drupal::config('roleassign.settings')->get('roleassign_roles')));
+
+      $form['roles']['#options'] = $assignable_roles;
+    }
+  }
+}
+
+/**
+ * Implements hook_user_presave().
+ *
+ * @param $account
+ */
+function roleassign_user_presave($account) {
+  if (roleassign_restrict_access()) {
+    $assignable_roles = array_filter(\Drupal::config('roleassign.settings')->get('roleassign_roles'));
+    $new_roles = $account->getRoles();
+
+    // Check the newly assigned roles, and whether the restricted
+    // user has privileges to do so, based on the RoleAssign settings.
+    foreach ($new_roles as $new_role) {
+      if (!in_array($new_role, $assignable_roles)) {
+        // Current user does not have privileges to change this role.
+        if(($key = array_search($new_role, $new_roles)) !== false) {
+          unset($new_roles[$key]);
+        }
+      }
+    }
+
+    if (!$account->isNew()) {
+      $original_account = $account->original;
+      $original_roles = $original_account->getRoles();
+
+      // Get a list of unassignable roles and add them to the new account roles
+      // if they were assigned originally to the account.
+      $unassignable_roles = roleassign_get_unassignable_roles();
+      foreach ($unassignable_roles as $unassignable_role) {
+        if (in_array($unassignable_role, $original_roles)) {
+          // This account will need to get this role again, since the current
+          // user is not allowed to mess with it.
+          $new_roles[] = $unassignable_role;
+        }
+      }
+    }
+
+    // $newroles now contains a list of roles (un)assigned by the
+    // restricted user + unassigneable roles that should stay unchanged.
+    $account->roles = $new_roles;
+  }
+}
+
+/**
+ * Get a list of roles that are not assignable by a restricted user
+ * that only has "assign roles" permission, not "administer permissions".
+ */
+function roleassign_get_unassignable_roles() {
+  $all_roles = user_role_names(TRUE);
+  // Ignore Authenticated user as this is not required.
+  unset($all_roles[RoleInterface::AUTHENTICATED_ID]);
+  $assignable_roles = array_filter(\Drupal::config('roleassign.settings')->get('roleassign_roles'));
+  $unassignable_roles = array_diff(array_keys($all_roles), $assignable_roles);
+  return $unassignable_roles;
+}

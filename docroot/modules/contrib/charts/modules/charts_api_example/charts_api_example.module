@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Charts Api Example - Module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function charts_api_example_help($route_name, RouteMatchInterface $route_match) {
+  $output = '';
+  switch ($route_name) {
+    // Main module help for the charts_api_example module.
+    case 'help.page.charts_api_example':
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A simple example on how to interact with the Charts API') . '</p>';
+      break;
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_chart_CHART_ID_alter().
+ */
+function charts_api_example_chart_definition_foobar_alter(&$chart) {
+  $chart['chart']['backgroundColor'] = 'blue';
+
+}

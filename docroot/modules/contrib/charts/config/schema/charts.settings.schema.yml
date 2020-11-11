@@ -1,0 +1,136 @@
+charts.settings:
+  type: config_object
+  label: 'Charts settings'
+  mapping:
+    charts_default_settings:
+      type: mapping
+      label: 'Charts default settings'
+      mapping:
+        library:
+          type: string
+          label: 'Charting library'
+        type:
+          type: string
+          label: 'Chart type'
+        display:
+          type: mapping
+          label: 'Display'
+          mapping:
+            title:
+              type: string
+              label: 'Chart title'
+            title_position:
+              type: string
+              label: 'Title position'
+            data_labels:
+              type: boolean
+              label: 'Enable data labels'
+            data_markers:
+              type: boolean
+              label: 'Enable data markers'
+            legend:
+              type: boolean
+              label: 'Legend'
+            legend_position:
+              type: string
+              label: 'Legend position'
+            background:
+              type: string
+              label: 'Background'
+            three_dimensional:
+              type: integer
+              label: 'Make chart three-dimensional (3D)'
+            colors:
+              type: sequence
+              label: 'Chart colors'
+              sequence:
+                type: string
+                label: 'Hexadecimal color'
+            polar:
+              type: integer
+              label: 'Transform cartesian charts into the polar coordinate system'
+            tooltips:
+              type: boolean
+              label: 'Tooltips'
+            tooltips_use_html:
+              type: boolean
+              label: 'Tooltips Use HTML?'
+            dimensions:
+              type: mapping
+              label: 'Dimensions'
+              mapping:
+                width:
+                  type: string
+                  label: 'Width'
+                width_units:
+                  type: string
+                  label: 'Width units'
+                height:
+                  type: string
+                  label: 'Height'
+                height_units:
+                  type: string
+                  label: 'Height units'
+            gauge:
+              type: mapping
+              label: 'Gauge'
+              mapping:
+                max:
+                  type: string
+                  label: 'Gauge maximum value'
+                min:
+                  type: string
+                  label: 'Gauge minimum value'
+                green_from:
+                  type: string
+                  label: 'Green minimum value'
+                green_to:
+                  type: string
+                  label: 'Green maximum value'
+                yellow_from:
+                  type: string
+                  label: 'Yellow minimum value'
+                yellow_to:
+                  type: string
+                  label: 'Yellow maximum value'
+                red_from:
+                  type: string
+                  label: 'Red minimum value'
+                red_to:
+                  type: string
+                  label: 'Red maximum value'
+        xaxis:
+          type: mapping
+          label: 'Display'
+          mapping:
+            title:
+              type: string
+              label: 'X axis title'
+            labels_rotation:
+              type: string
+              label: 'X axis labels rotation'
+        yaxis:
+          type: mapping
+          label: 'Display'
+          mapping:
+            title:
+              type: string
+              label: 'Y axis title'
+            min:
+              type: string
+              label: 'Y axis min value'
+            max:
+              type: string
+              label: 'Y axis max value'
+            prefix:
+              type: string
+              label: 'Y axis prefix'
+            suffix:
+              type: string
+              label: 'Y axis suffix'
+            decimal_count:
+              type: string
+              label: 'Y axis decimal count'
+            labels_rotation:
+              type: string
+              label: 'Y axis labels rotation'

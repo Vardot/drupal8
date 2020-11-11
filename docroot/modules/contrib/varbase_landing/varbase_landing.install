@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Varbase landing module.
+ */
+
+use Symfony\Component\Yaml\Yaml;
+use Drupal\Core\Config\InstallStorage;
+use Drupal\Core\Config\StorageInterface;
+use Drupal\Core\Config\FileStorage;
+
+/**
+ * Implements hook_install().
+ */
+function varbase_landing_install() {
+
+  $module_name = preg_replace('/_install$/', '', __FUNCTION__);
+  $module_path = Drupal::service('module_handler')->getModule($module_name)->getPath();
+
+  // Processer for install: in [$module_name].info.yml file.
+  // ---------------------------------------------------------------------------.
+  $module_info_file = $module_path . '/' . $module_name . '.info.yml';
+  if (file_exists($module_info_file)) {
+    $module_info_data = (array) Yaml::parse(file_get_contents($module_info_file));
+    if (isset($module_info_data['install'])
+      && is_array($module_info_data['install'])) {
+      \Drupal::service('module_installer')->install($module_info_data['install'], TRUE);
+    }
+  }
+
+  // Install optional configs.
+  $optional_install_path = $module_path . '/' . InstallStorage::CONFIG_OPTIONAL_DIRECTORY;
+  if (is_dir($optional_install_path)) {
+    $config_installer = \Drupal::service('config.installer');
+    $config_installer->installDefaultConfig('module', $module_name);
+
+    // Create field storage configs first in active config.
+    $storage_config_files = \Drupal::service('file_system')->scanDirectory($optional_install_path, '/^field.storage.*\\.(yml)$/i');
+    if (isset($storage_config_files) && is_array($storage_config_files)) {
+      foreach ($storage_config_files as $storage_config_file) {
+        $storage_config_file_content = file_get_contents(DRUPAL_ROOT . '/' . $storage_config_file->uri);
+        $storage_config_file_data = (array) Yaml::parse($storage_config_file_content);
+        $config_factory = \Drupal::configFactory()->getEditable($storage_config_file->name);
+        $config_factory->setData($storage_config_file_data)->save(TRUE);
+      }
+    }
+
+    // Install any optional config the module provides.
+    $storage = new FileStorage($optional_install_path, StorageInterface::DEFAULT_COLLECTION);
+    $config_installer->installOptionalConfig($storage, '');
+
+    // Have the .settings.yml configs into the active config.
+    $settings_config_files = \Drupal::service('file_system')->scanDirectory($optional_install_path, '/^.*\\.(settings.yml)$/i');
+    if (isset($settings_config_files) && is_array($settings_config_files)) {
+      foreach ($settings_config_files as $settings_config_file) {
+        $settings_config_file_content = file_get_contents(DRUPAL_ROOT . '/' . $settings_config_file->uri);
+        $settings_config_file_data = (array) Yaml::parse($settings_config_file_content);
+        $config_factory = \Drupal::configFactory()->getEditable($settings_config_file->name);
+        $config_factory->setData($settings_config_file_data)->save(TRUE);
+      }
+    }
+  }
+  // ---------------------------------------------------------------------------
+}
+
+/**
+ * Issue #3175817: Fix deprecated function getCurrentUserId replaced.
+ * 
+ * By getDefaultEntityOwner in
+ * core.base_field_override.node.landing_page.uid config.
+ */
+function varbase_landing_update_8701() {
+  $config_factory = \Drupal::service('config.factory');
+  $node_uid_configs = $config_factory->listAll('core.base_field_override.node.');
+
+  // Update for core.base_field_override.node.landing_page.uid
+  // And all content types.
+  foreach ($node_uid_configs as $node_uid_config) {
+    if (substr($node_uid_config, -4) === ".uid") {
+
+      $node_uid_config_factory = $config_factory->getEditable($node_uid_config);
+      $default_value_callback = $node_uid_config_factory->get('default_value_callback');
+
+      if (isset($default_value_callback)
+        && !empty($default_value_callback)
+        && $default_value_callback === 'Drupal\node\Entity\Node::getCurrentUserId') {
+
+        $node_uid_config_factory->set('default_value_callback', 'Drupal\node\Entity\Node::getDefaultEntityOwner')->save(TRUE);
+      }
+    }
+  }
+
+}

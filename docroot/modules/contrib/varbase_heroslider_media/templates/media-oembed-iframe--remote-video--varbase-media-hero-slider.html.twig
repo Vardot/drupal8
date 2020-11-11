@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Varbase Medi Hero slider theme implementation to display an oEmbed resource.
+ *
+ * Display in an iframe and add the right behavior player for the provider.
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <css-placeholder token="{{ placeholder_token }}">
+    <script src="{{ base_path }}{{ varbase_heroslider_media_path }}/js/oembed-frame.heroslider.{{ provider }}.js"></script>
+  </head>
+  <body style="margin: 0;">
+    {{ media|raw }}
+  </body>
+</html>

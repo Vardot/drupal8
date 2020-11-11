@@ -1,0 +1,5 @@
+general:
+  version: 3.x
+  css:
+    component:
+      css/drd_agent.css: {}

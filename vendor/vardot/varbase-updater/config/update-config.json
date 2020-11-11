@@ -1,0 +1,83 @@
+{
+  "profile": "varbase",
+  "package": "vardot/varbase",
+  "8.4.*": {
+    "from": "8.4.*",
+    "to": "8.4.28",
+    "composer-project-json-url": "8.4.28"
+  },
+  "8.4.28": {
+    "from": "8.4.28",
+    "to": "8.6.3",
+    "composer-project-json-url": "8.6.3",
+    "packages": {
+      "crucial": {
+        "drupal/varbase_carousels": "6.0",
+        "drupal/entity_browser": "2.0",
+        "drupal/video_embed_field": "2.0",
+        "drupal/varbase_media": "6.2",
+        "drupal/media_entity": "2.0-beta3",
+        "vardot/entity_browser_generic_embed": "8.1.x-dev",
+        "drupal/panelizer": "4.1"
+      }
+    },
+    "skip":[
+      "media_entity_document",
+      "media_entity_image"
+    ],
+    "enable-after-update":[
+      "entity_browser_generic_embed"
+    ]
+  },
+  "8.5.*": {
+    "from": "8.5.*",
+    "to": "8.5.5",
+    "composer-project-json-url": "8.5.5"
+  },
+  "8.5.5": {
+    "from": "8.5.5",
+    "to": "8.6.3",
+    "composer-project-json-url": "8.6.3",
+    "packages": {
+      "crucial": {
+        "drupal/varbase_carousels": "6.0",
+        "drupal/entity_browser": "2.0",
+        "drupal/video_embed_field": "2.0",
+        "drupal/varbase_media": "6.2",
+        "drupal/media_entity": "2.0-beta3",
+        "vardot/entity_browser_generic_embed": "8.1.x-dev",
+        "drupal/panelizer": "4.1"
+      }
+    },
+    "skip":[
+      "media_entity_document",
+      "media_entity_image"
+    ],
+    "enable-after-update":[
+      "entity_browser_generic_embed"
+    ]
+  },
+  "8.6.*": {
+    "from": "8.6.*",
+    "to": "8.6.13",
+    "composer-project-json-url": "8.6.13"
+  },
+  "8.6.13": {
+    "from": "8.6.13",
+    "to": "8.7.1",
+    "composer-project-json-url": "8.7.1",
+    "skip":[
+      "media_entity_googledocs"
+    ]
+  },
+  "8.7.*": {
+    "from": "8.7.*",
+    "to": "8.8.*",
+    "composer-project-json-url": "latest"
+  },
+  "8.8.*": {
+    "from": "8.8.*",
+    "to": "8.8.*",
+    "composer-project-json-url": "latest"
+  }
+}

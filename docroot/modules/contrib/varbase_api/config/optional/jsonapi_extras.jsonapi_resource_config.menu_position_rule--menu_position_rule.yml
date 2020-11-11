@@ -1,0 +1,35 @@
+uuid: ba796972-9773-432b-bf8d-2273ba7ec8d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_position
+id: menu_position_rule--menu_position_rule
+disabled: true
+path: menu_position_rule/menu_position_rule
+resourceType: menu_position_rule--menu_position_rule
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

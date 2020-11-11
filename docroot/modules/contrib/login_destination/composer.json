@@ -1,0 +1,8 @@
+{
+  "name": "drupal/login_destination",
+  "description": "The Login Destination module add possibility customize the destination that the user is redirected to after login.",
+  "type": "drupal-module",
+  "require-dev": {
+    "drupal/admin_toolbar": "^1.23"
+  }
+}

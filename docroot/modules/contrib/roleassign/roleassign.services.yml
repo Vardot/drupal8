@@ -1,0 +1,7 @@
+services:
+  roleassign.uninstall_validator:
+    class: Drupal\roleassign\RoleAssignUninstallValidator
+    tags:
+      - { name: module_install.uninstall_validator }
+    arguments: ['@string_translation']
+    lazy: true

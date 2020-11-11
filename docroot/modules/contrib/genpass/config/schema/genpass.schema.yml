@@ -1,0 +1,12 @@
+genpass.settings:
+  type: config_object
+  label: 'Generate Password Settings'
+  mapping:
+    genpass_length:
+      type: integer
+    genpass_algorithm:
+      type: string
+    genpass_mode:
+      type: integer
+    genpass_display:
+      type: integer

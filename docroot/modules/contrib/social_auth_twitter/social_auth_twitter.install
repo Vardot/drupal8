@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the Twitter Login module.
+ */
+
+use Drupal\social_auth\Controller\SocialAuthController;
+
+/**
+ * Implements hook_install().
+ */
+function social_auth_twitter_install() {
+  SocialAuthController::setLoginButtonSettings('social_auth_twitter', 'social_auth_twitter.redirect_to_twitter', 'img/twitter_logo.svg');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function social_auth_twitter_uninstall() {
+  SocialAuthController::deleteLoginButtonSettings('social_auth_twitter');
+}

@@ -1,0 +1,11 @@
+name: OpenApi Test Resources
+type: module
+description: Resource dependecies for running tests for the OpenApi Module.
+core: 8.x
+core_version_requirement: '^8 || ^9'
+package: Testing
+
+# Information added by Drupal.org packaging script on 2020-04-25
+version: '8.x-2.0-rc3'
+project: 'openapi'
+datestamp: 1587845668

@@ -1,0 +1,23 @@
+<div class="content-kanban">
+
+  <h2 id="{{ kanban_id }}">{{ kanban_label }}</h2>
+
+  {{ filter_form }}
+
+  <table class="kanban-columns kanban-{{ columns|length }}-columns">
+    <thead>
+      <tr>
+        {% for header in headers %}
+          <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for column in columns %}
+          {{ column }}
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>

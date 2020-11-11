@@ -1,0 +1,35 @@
+uuid: 0ffad75d-4197-4b77-b3da-218f1d422091
+langcode: en
+status: true
+dependencies:
+  module:
+    - userprotect
+id: userprotect_rule--userprotect_rule
+disabled: true
+path: userprotect_rule/userprotect_rule
+resourceType: userprotect_rule--userprotect_rule
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

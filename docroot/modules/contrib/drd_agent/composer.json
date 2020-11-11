@@ -1,0 +1,29 @@
+{
+    "name": "drupal/drd_agent",
+    "type": "drupal-module",
+    "description": "TODO",
+    "keywords": [
+        "Drupal"
+    ],
+    "license": "GPL-2.0+",
+    "homepage": "https://www.drupal.org/project/drd_agent",
+    "authors": [
+        {
+            "name": "Jürgen Haas",
+            "homepage": "https://www.drupal.org/u/jurgenhaas"
+        }
+    ],
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/drd",
+        "source": "https://git.drupal.org/project/drd_agent"
+    },
+    "suggest": {
+        "drupal/hacked": "Validate each project if it got changed compared to the original code from drupal.org.",
+        "drupal/monitoring": "Site monitoring module with sensors.",
+        "drupal/security_review": "Site security and configuration review module."
+    },
+    "require": {
+        "php": ">=7.1"
+    }
+}

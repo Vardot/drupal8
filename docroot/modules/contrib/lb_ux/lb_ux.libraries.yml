@@ -1,0 +1,20 @@
+drupal.lb_ux:
+  version: VERSION
+  css:
+    theme:
+      css/layout-builder-ux.css: {}
+  js:
+    js/lb_ux.js: {}
+  dependencies:
+    - core/jquery
+
+drupal.lb_ux_message:
+  version: VERSION
+  css:
+    theme:
+      css/layout-builder-ux-message.css: {}
+  js:
+    js/lb_ux_message.js: {}
+  dependencies:
+    - core/drupal.message
+    - core/drupalSettings

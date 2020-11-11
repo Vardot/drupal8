@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the Charts module.
+ */
+
+use Drupal\charts\Settings\ChartsDefaultSettings;
+
+/**
+ * Move charts block settings in their own array tree under charts.
+ */
+function charts_blocks_update_8301() {
+  $block_storage = \Drupal::entityTypeManager()
+    ->getStorage('block');
+
+  // Getting all the charts blocks.
+  $charts_blocks_ids = $block_storage->getQuery()
+    ->condition('plugin', 'charts_block')
+    ->execute();
+
+  if ($charts_blocks_ids) {
+    $old_config_keys = ChartsDefaultSettings::getLegacySettingsMappingKeys();
+    foreach ($charts_blocks_ids as $charts_blocks_id) {
+      /** @var \Drupal\block\BlockInterface $charts_block */
+      $charts_block = $block_storage->load($charts_blocks_id);
+      if ($charts_block) {
+        $block_settings = $charts_block->get('settings');
+        // Adding a charts tree for charts block configurations.
+        $block_settings['chart'] = ChartsDefaultSettings::transformLegacySettingsToNew($block_settings, $old_config_keys);
+        // Updating the block setting and we save.
+        $charts_block->set('settings', $block_settings);
+        $charts_block->save();
+      }
+    }
+  }
+}

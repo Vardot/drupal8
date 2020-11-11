@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Contains varbase_auth.module.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function varbase_auth_preprocess_page(&$variables) {
+
+  $current_rout = \Drupal::routeMatch()->getRouteName();
+
+  $current_rout = (string) $current_rout;
+
+  if ($current_rout == 'user.register' ||
+      $current_rout == 'user.login') {
+    // Get list of enabled modules.
+    $modules_list = \Drupal::service('module_handler')->getModuleList();
+
+    // Check if at least one social auth module is enabled.
+    $we_do_have_enabled_social_auth_modules = FALSE;
+    foreach ($modules_list as $module_index => $module_value) {
+      $module_index = (string) $module_index;
+      if (substr_count($module_index, 'social_auth_') > 0) {
+        $we_do_have_enabled_social_auth_modules = TRUE;
+        break;
+      }
+    }
+
+    // Add variables to template.
+    _varbase_auth_add_template_variable($variables, [
+      'we_do_have_enabled_social_auth_modules' => [
+        'type' => 'bool',
+        'value' => $we_do_have_enabled_social_auth_modules,
+      ],
+    ]);
+  }
+}
+
+/**
+ * Populates TWIG variables with varbase related data.
+ *
+ * E.g.: $variables['varbase']['test'] becomes
+ * {{ VARBASE_AUTH.test }} in the templates.
+ *
+ * @param array &$variables
+ *   The core $variables passed by reference.
+ * @param array $data
+ *   New data in array format, which will be passed to the template.
+ *
+ * @return bool|array
+ *   The new data.
+ *
+ * @internal
+ */
+function _varbase_auth_add_template_variable(array &$variables, array $data = NULL) {
+  static $key = 'varbase';
+
+  if (!isset($variables[$key])) {
+    $variables[$key] = $data;
+  }
+  else {
+    $variables[$key][] = $data;
+  }
+  return $data;
+}

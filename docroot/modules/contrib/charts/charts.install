@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the Charts module.
+ */
+
+use Drupal\charts\Settings\ChartsDefaultSettings;
+
+/**
+ * Implements hook_requirements().
+ */
+function charts_requirements($phase) {
+  $requirements = [];
+
+  return $requirements;
+}
+
+/**
+ * Update existing default config.
+ */
+function charts_update_8301() {
+  /** @var \Drupal\Core\Config\Config $default_config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('charts.settings');
+
+  if ($config && ($default_settings = $config->get('charts_default_settings'))) {
+    $config->set('charts_default_settings', ChartsDefaultSettings::transformLegacySettingsToNew($default_settings));
+    $config->save();
+  }
+}
+
+/**
+ * Update existing views to use the new chart settings.
+ */
+function charts_update_8302() {
+  $view_storage = \Drupal::entityTypeManager()
+    ->getStorage('view');
+  $view_ids = $view_storage->getQuery()
+    ->condition('display.*.display_options.style.type', 'chart', '=')
+    ->execute();
+  if ($view_ids) {
+    foreach ($view_ids as $view_id) {
+      /** @var \Drupal\views\ViewEntityInterface $view */
+      $view = $view_storage->load($view_id);
+      if ($view) {
+        $changed = FALSE;
+        $displays = $view->get('display');
+        foreach ($displays as $id => &$display) {
+          $style = &$display['display_options']['style'];
+          if ($style['type'] === 'chart' && isset($style['options']['field_colors']) && isset($style['options']['fields']['table'])) {
+            $changed = TRUE;
+            unset($style['options']['fields']);
+            $options = &$style['options'];
+            $options = ChartsDefaultSettings::transformLegacySettingsToNew($options);
+            $chart_settings_elements = [
+              'library',
+              'type',
+              'fields',
+              'display',
+              'xaxis',
+              'yaxis',
+            ];
+            foreach ($options as $option_key => $option) {
+              if (in_array($option_key, $chart_settings_elements)) {
+                $options['chart_settings'][$option_key] = $option;
+                unset($options[$option_key]);
+              }
+            }
+          }
+        }
+        if ($changed) {
+          $view->set('display', $displays);
+          $view->save();
+        }
+      }
+    }
+  }
+}

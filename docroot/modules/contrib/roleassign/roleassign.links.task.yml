@@ -1,0 +1,5 @@
+roleassign.settings:
+  title: 'Role assign'
+  route_name: roleassign.settings
+  base_route: entity.user.collection
+  weight: 15

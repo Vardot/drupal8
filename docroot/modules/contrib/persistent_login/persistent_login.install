@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file
+ * Installation functions for Persistent Login module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function persistent_login_schema() {
+  $schema = [];
+  $schema['persistent_login'] = [
+    'description' => 'Stores Persistent Login tokens for users',
+    'fields' => [
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The {users}.uid this row is for.',
+      ],
+      'series' => [
+        'type' => 'varchar',
+        'length' => 43,
+        'not null' => TRUE,
+        'description' => 'The long-lived value identifying the token sequence.',
+      ],
+      'instance' => [
+        'type' => 'varchar',
+        'length' => 43,
+        'not null' => TRUE,
+        'description' => 'The single-use value.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The creation timestamp for this series.',
+      ],
+      'refreshed' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The refresh timestamp for this series.',
+      ],
+      'expires' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The expiration timestamp for this series.',
+      ],
+    ],
+    'primary key' => ['series'],
+    'indexes' => [
+      'expires' => ['expires'],
+      'uid_expires' => ['uid', 'expires'],
+    ],
+  ];
+  return $schema;
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function persistent_login_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $session_storage_options = \Drupal::getContainer()->getParameter('session.storage.options');
+    if ($session_storage_options['cookie_lifetime'] > 0) {
+      $requirements['persistent_login'] = [
+        'title' => t('Session cookie lifetime'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => t('When using Persistent Login, session cookie lifetime should be 0 so that sessions end when the browser is closed.  You can change this setting by editing <strong>services.yml</strong> and rebuilding the cache.'),
+        'value' => $session_storage_options['cookie_lifetime'],
+      ];
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Add created column to database table.
+ */
+function persistent_login_update_8101() {
+  Drupal::database()->schema()->addField(
+    'persistent_login',
+    'created',
+    [
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'initial' => time(),
+      'description' => 'The creation timestamp for this series.',
+    ]
+  );
+}
+
+/**
+ * Add refreshed column to database table.
+ */
+function persistent_login_update_8102() {
+  Drupal::database()->schema()->addField(
+    'persistent_login',
+    'refreshed',
+    [
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'initial' => '0',
+      'description' => 'The refresh timestamp for this series.',
+    ]
+  );
+}
+
+/**
+ * Add form field label config value.
+ */
+function persistent_login_update_8103() {
+  Drupal::configFactory()->getEditable('persistent_login.settings')
+    ->set('login_form.field_label', 'Remember me')
+    ->save();
+}
+
+/**
+ * Add default value for cookie_prefix to config.
+ */
+function persistent_login_update_8104() {
+  Drupal::configFactory()->getEditable('persistent_login.settings')
+    ->set('cookie_prefix', 'PL')
+    ->save();
+}

@@ -1,0 +1,9 @@
+styleguide.page:
+  title: Style guides
+  description: 'Displays the default theme style guide'
+  parent: system.themes_page
+  route_name: styleguide.page
+
+styleguide.theme_menu_links:
+  deriver: \Drupal\styleguide\Plugin\Derivative\StyleguideMenuLinks
+  parent: styleguide.page

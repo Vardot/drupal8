@@ -1,0 +1,11 @@
+name: Better Login
+type: module
+description: Make the login screens better :)
+package: User interface
+core: 8.x
+core_version_requirement: ^8 || ^9
+
+# Information added by Drupal.org packaging script on 2020-04-30
+version: '8.x-1.5'
+project: 'betterlogin'
+datestamp: 1588242720

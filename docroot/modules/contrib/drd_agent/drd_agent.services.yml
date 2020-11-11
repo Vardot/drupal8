@@ -1,0 +1,4 @@
+services:
+  drd_agent.setup:
+    class: Drupal\drd_agent\Setup
+    arguments: ['@config.factory', '@datetime.time', '@request_stack']

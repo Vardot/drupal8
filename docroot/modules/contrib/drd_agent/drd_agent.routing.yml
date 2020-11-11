@@ -1,0 +1,47 @@
+# drd_agent module routing definition
+drd_agent.settings.form:
+  path: '/admin/config/system/drd'
+  defaults:
+    _form: '\Drupal\drd_agent\Form\Settings'
+    _title: 'DRD Agent'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+drd_agent.default:
+  path: '/drd-agent'
+  defaults:
+    _controller: '\Drupal\drd_agent\Controller\Agent::get'
+    _disable_route_normalizer: TRUE
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+drd_agent.crypt:
+  path: '/drd-agent-crypt'
+  defaults:
+    _controller: '\Drupal\drd_agent\Controller\Agent::getCryptMethods'
+    _disable_route_normalizer: TRUE
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+drd_agent.authorize.secret:
+  path: '/drd-agent-authorize-secret'
+  defaults:
+    _controller: '\Drupal\drd_agent\Controller\Agent::authorizeBySecret'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+drd_agent.authorize.form:
+  path: '/drd-agent-authorize'
+  defaults:
+    _form: '\Drupal\drd_agent\Form\Authorize'
+    _title: 'Authorize Dashboard'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+

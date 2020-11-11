@@ -1,0 +1,6 @@
+services:
+  social_auth_linkedin.manager:
+    class: Drupal\social_auth_linkedin\LinkedInAuthManager
+    arguments:
+      - '@config.factory'
+      - '@logger.factory'

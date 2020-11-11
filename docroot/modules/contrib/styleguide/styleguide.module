@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * The Styleguide module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function styleguide_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.styleguide':
+      $output = '';
+      $output .= '<h3>' . t('Overview') . '</h3>';
+      $output .= '<p>' . t('The Style Guide module creates a preview page for displaying common theme elements in all active themes for your Drupal site. The module comes with previews for common HTML elements, such as tables, forms, links and lists. The Style Guide module creates an API and preview page for displaying common theme elements. Use it to preview items such as tables, menus, and lists in your custom themes.') . '</p>';
+      $output .= '<h3>' . t('Purpose') . '</h3>';
+      $output .= '<p>' . t('The purpose of a visual style guide as both a general theming and development tool is to ensure that common site elements are styled in a consistent and intentional way.') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('<a href=":wiki">Wikipedia: Style guide</a>', [':wiki' => 'http://en.wikipedia.org/wiki/Style_guide']) . '</li>';
+      $output .= '</ul>';
+      $output .= '<h3>' . t('Using Style Guide') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('You must be logged in as user with the "View theme style guides" permission.') . '</li>';
+      $output .= '<li>' . t('Navigate to <a href=":link">admin/appearance/styleguide</a> and you will see a style guide for the current default theme.', [':link' => Url::fromRoute('styleguide.page')]) . '</li>';
+      $output .= '<li>' . t('Using the tabs at the top of the page, you can switch to viewing the style guide in other enabled theme.') . '</li>';
+      $output .= '</ul>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function styleguide_theme($existing, $type, $theme, $path) {
+  $themes = [
+    'styleguide_header' => [
+      'variables' => ['theme_info' => []],
+      'template' => 'styleguide-header',
+    ],
+    'styleguide_links' => [
+      'variables' => ['items' => []],
+      'template' => 'styleguide-links',
+    ],
+    'styleguide_item' => [
+      'variables' => ['key' => NULL, 'item' => [], 'content' => NULL],
+      'template' => 'styleguide-item',
+    ],
+    'styleguide_content' => [
+      'variables' => ['content' => NULL],
+      'template' => 'styleguide-content',
+    ],
+  ];
+
+  return $themes;
+}

@@ -1,0 +1,4 @@
+genpass_length: 12
+genpass_algorithm: 'genpass'
+genpass_mode: 1
+genpass_display: 0

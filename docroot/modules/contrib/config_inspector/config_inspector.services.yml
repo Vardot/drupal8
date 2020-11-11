@@ -1,0 +1,4 @@
+services:
+  plugin.manager.config_inspector:
+    class: Drupal\config_inspector\ConfigInspectorManager
+    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler', '@config.factory', '@config.typed']

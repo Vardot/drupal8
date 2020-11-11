@@ -1,0 +1,77 @@
+{
+  "name": "drupal/varbase_editor",
+  "description": "Editor profile and settings to be used in most websites.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_editor",
+  "notification-url": "https://packages.drupal.org/8/downloads",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/issues/varbase_editor",
+    "source": "http://cgit.drupalcode.org/varbase_editor"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/pathologic": "~1.0",
+    "drupal/ckeditor_bidi": "~3.0",
+    "drupal/ace_editor": "~1.0",
+    "drupal/extlink": "~1.0",
+    "drupal/linkit": "~5.0",
+    "drupal/image_resize_filter": "~1.0",
+    "drupal/ckeditor_media_embed": "~1.0",
+    "drupal/anchor_link": "~1.0",
+    "drupal/token": "~1.0",
+    "drupal/token_filter": "~1.0"
+  },
+  "suggest": {
+    "npm-asset/ace-builds": "~1.0: Provides JavaScript library necessary for ACE code Editor"
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "libraries/ace": ["npm-asset/ace-builds"],
+      "libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ]
+    },
+    "drupal-libraries": {
+      "libraries": [
+          {"name": "ace", "package": "npm-asset/ace-builds"}
+      ]
+    },
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/ckeditor_media_embed": {
+        "Issue #2900313: Add ability to embed tweets and other rich content in WYSIWYG":
+        "https://www.drupal.org/files/issues/embed_rich_content_in_WYSIWYG-2900313-2.patch"
+      }
+    }
+  }
+}

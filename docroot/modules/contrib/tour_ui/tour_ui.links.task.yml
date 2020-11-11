@@ -1,0 +1,4 @@
+entity.tour.edit_form:
+  route_name: entity.tour.edit_form
+  base_route: entity.tour.edit_form
+  title: Edit

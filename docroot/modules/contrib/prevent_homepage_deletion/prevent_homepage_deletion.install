@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Installs, requirements and updates for the Prevent homepage deletion module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function prevent_homepage_deletion_install() {
+  node_access_needs_rebuild(TRUE);
+  drupal_flush_all_caches();
+}

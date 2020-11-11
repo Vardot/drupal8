@@ -1,0 +1,4 @@
+use layout builder block sanitizer:
+  title: 'Use Layout builder block sanitizer'
+  description: 'Allow usage of Layout builder block sanitizer'
+  restrict access: true

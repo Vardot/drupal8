@@ -1,0 +1,8 @@
+name: Social Auth LinkedIn
+type: module
+description: 'Social Auth integration for LinkedIn.'
+package: Social
+core_version_requirement: ^8 || ^9
+configure: social_auth_linkedin.settings_form
+dependencies:
+  - social_auth:social_auth

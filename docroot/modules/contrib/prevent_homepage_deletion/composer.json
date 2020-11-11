@@ -1,0 +1,17 @@
+{
+  "name": "drupal/prevent_homepage_deletion",
+  "description": "This module adds a permission 'delete_homepage_node'.",
+  "type": "drupal-module",
+  "keywords": ["Drupal", "prevent_homepage_deletion"],
+  "homepage": "https://www.drupal.org/project/prevent_homepage_deletion",
+  "authors": [
+    {
+      "name": "Josha Hubbers (JoshaHubbers)",
+      "homepage": "https://www.drupal.org/u/joshahubbers-0",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/prevent_homepage_deletion"
+  }
+}

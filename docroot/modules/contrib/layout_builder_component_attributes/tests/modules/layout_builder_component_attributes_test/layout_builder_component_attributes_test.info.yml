@@ -1,0 +1,13 @@
+name: 'Layout Builder Component Attributes Test'
+description: 'Provides testing functionality for Layout Builder Component Attributes'
+
+type: module
+core_version_requirement: ^8.8 || ^9
+
+dependencies:
+  - layout_builder_component_attributes:layout_builder_component_attributes
+
+# Information added by Drupal.org packaging script on 2020-10-06
+version: '1.1.0'
+project: 'layout_builder_component_attributes'
+datestamp: 1601998428

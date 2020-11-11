@@ -1,0 +1,6 @@
+services:
+  drd_agent.commands:
+    class: Drupal\drd_agent\Commands\Drush
+    arguments: ['@drd_agent.setup']
+    tags:
+      - { name: drush.command }

@@ -1,0 +1,47 @@
+uuid: 7fae1ac6-3bb3-41c5-9256-70bcd90dc236
+langcode: en
+status: true
+dependencies:
+  module:
+    - update_helper_checklist
+id: update_helper_checklist_update--update_helper_checklist_update
+disabled: true
+path: update_helper_checklist_update/update_helper_checklist_update
+resourceType: update_helper_checklist_update--update_helper_checklist_update
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  successful_by_hook:
+    fieldName: successful_by_hook
+    publicName: successful_by_hook
+    enhancer:
+      id: ''
+    disabled: false
+  langcode:
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+    disabled: false
+  created:
+    fieldName: created
+    publicName: created
+    enhancer:
+      id: ''
+    disabled: false
+  changed:
+    fieldName: changed
+    publicName: changed
+    enhancer:
+      id: ''
+    disabled: false

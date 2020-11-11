@@ -1,0 +1,30 @@
+{
+    "name": "emuse/behat-html-formatter",
+    "description": "This will create a html formatter for Behat.",
+    "authors": [
+        {
+            "name": "Neal Vanmeert",
+            "email": "neal@emuse.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "twig/twig":"~1.5|~2.0",
+        "behat/behat": "~3.0",
+        "behat/gherkin": "~4.2"
+    },
+    "require-dev": {
+        "symfony/process": ">2.3,<4.0",
+        "phpunit/phpunit": "~4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "emuse\\BehatHTMLFormatter\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

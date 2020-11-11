@@ -1,0 +1,101 @@
+uuid: ed4ec67d-3106-4bc3-880d-e74f4991aaa5
+langcode: en
+status: true
+dependencies:
+  module:
+    - slick
+id: slick--slick
+disabled: true
+path: slick/slick
+resourceType: slick--slick
+resourceFields:
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  langcode:
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+    disabled: false
+  status:
+    fieldName: status
+    publicName: status
+    enhancer:
+      id: ''
+    disabled: false
+  dependencies:
+    fieldName: dependencies
+    publicName: dependencies
+    enhancer:
+      id: ''
+    disabled: false
+  third_party_settings:
+    fieldName: third_party_settings
+    publicName: third_party_settings
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  name:
+    fieldName: name
+    publicName: name
+    enhancer:
+      id: ''
+    disabled: false
+  label:
+    fieldName: label
+    publicName: label
+    enhancer:
+      id: ''
+    disabled: false
+  weight:
+    fieldName: weight
+    publicName: weight
+    enhancer:
+      id: ''
+    disabled: false
+  group:
+    fieldName: group
+    publicName: group
+    enhancer:
+      id: ''
+    disabled: false
+  skin:
+    fieldName: skin
+    publicName: skin
+    enhancer:
+      id: ''
+    disabled: false
+  breakpoints:
+    fieldName: breakpoints
+    publicName: breakpoints
+    enhancer:
+      id: ''
+    disabled: false
+  optimized:
+    fieldName: optimized
+    publicName: optimized
+    enhancer:
+      id: ''
+    disabled: false
+  options:
+    fieldName: options
+    publicName: options
+    enhancer:
+      id: ''
+    disabled: false

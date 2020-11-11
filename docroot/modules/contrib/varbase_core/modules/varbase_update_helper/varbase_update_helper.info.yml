@@ -1,0 +1,14 @@
+name: 'Varbase Updates Helper'
+description: 'Provides a UI to review Varbase Updates that are made available in every version.'
+type: module
+package: Varbase
+core_version_requirement: ^9
+dependencies:
+  - checklistapi:checklistapi
+  - update_helper:update_helper
+  - update_helper:update_helper_checklist
+
+# Information added by Drupal.org packaging script on 2020-11-08
+version: '9.0.0-alpha3'
+project: 'varbase_core'
+datestamp: 1604827746

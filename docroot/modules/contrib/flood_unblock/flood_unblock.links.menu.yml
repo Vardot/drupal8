@@ -1,0 +1,6 @@
+flood_unblock.admin:
+  title: 'Flood Unblock'
+  description: "Unblocks IP addresses and user ID's that are blocked after multiple failed login attempts."
+  parent: entity.user.collection
+  route_name: flood_unblock.form
+  menu_name: devel

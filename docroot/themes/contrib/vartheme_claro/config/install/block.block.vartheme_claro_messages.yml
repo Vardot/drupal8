@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - claro
+    - vartheme_claro
+id: vartheme_claro_messages
+theme: vartheme_claro
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

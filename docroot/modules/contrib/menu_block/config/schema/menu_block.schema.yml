@@ -1,0 +1,25 @@
+block.settings.menu_block:*:
+  type: block_settings
+  label: 'Menu block'
+  mapping:
+    follow:
+      type: boolean
+      label: 'The initial visibility level follows the active menu item'
+    follow_parent:
+      type: string
+      label: 'Set initial visibility level to the active menu item, or its children'
+    level:
+      type: integer
+      label: 'Starting level'
+    depth:
+      type: integer
+      label: 'Maximum number of levels'
+    expand:
+      type: boolean
+      label: 'Expand all menu links'
+    parent:
+      type: string
+      label: 'Parent menu link'
+    suggestion:
+      type: string
+      label: 'Theme suggestion'

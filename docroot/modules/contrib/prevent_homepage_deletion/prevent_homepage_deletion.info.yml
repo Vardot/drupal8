@@ -1,0 +1,13 @@
+name: Prevent Homepage Deletion
+type: module
+description: This module removes the delete option for the front page
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Access control
+dependencies:
+  - drupal:node
+
+# Information added by Drupal.org packaging script on 2020-05-20
+version: '8.x-1.3'
+project: 'prevent_homepage_deletion'
+datestamp: 1589985613

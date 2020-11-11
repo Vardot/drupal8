@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * Bootstrap Paragraphs template for displaying a Carousel.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   - id: The paragraph ID.
+ *   - bundle: The type of the paragraph, for example, "image" or "text".
+ *   - authorid: The user ID of the paragraph author.
+ *   - createdtime: Formatted creation date. Preprocess functions can
+ *     reformat it by calling format_date() with the desired parameters on
+ *     $variables['paragraph']->getCreatedTime().
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('varbase_bootstrap_paragraphs/vbp-default') }}
+{{ attach_library('varbase_bootstrap_paragraphs/vbp-colors') }}
+{{ attach_library('varbase_bootstrap_paragraphs/vbp-carousel') }}
+
+{# Background color. #}
+{% if content.bp_background|render %}
+  {% set layout_background = content.bp_background['#items'].getString() %}
+  {% set layout_background_classes = [ layout_background ] %}
+{% endif %}
+
+{# Renders Slide Interval field. #}
+{# Converts database values to classes supplied by template. #}
+{% if content.bp_slide_interval|render %}
+  {% set slide_interval = content.bp_slide_interval['#items'].getString() %}
+  {% set slide_interval_classes = [ slide_interval ] %}
+{% endif %}
+
+{# The template default set classes. #}
+{%
+set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+'carousel',
+'slide',
+]
+%}
+
+{# Merges Background color with classes. #}
+{% set background_field = content.bp_background|render %}
+{% if background_field %}
+  {% set classes = classes|merge(layout_background_classes) %}
+{% endif %}
+
+{# No container by default. #}
+{% set add_container = false %}
+
+{# If there is BG image it's always edge to edge #}
+{% if (VBP.background_image.url or content.bp_background|render) %}
+    {% set attributes = attributes.addClass('bg-edge2edge') %}
+    {% set add_container = true %}
+{% endif %}
+
+{# If gutter option were selected. #}
+{% if VBP.bp_gutter.value %}
+  {% set add_container = true %}
+{% endif %}
+
+{# Sets Unique ID for Carousel from Paragraph ID. #}
+{% set paragraph_id = 'vbp-carousel-' ~ paragraph.id.value %}
+
+{# Sets paragraph title for paragraph. #}
+{% set paragraph_title = content.bp_title[0]['#context']['value']|render %}
+
+{# Sets paragraph title status for paragraph. #}
+{% set paragraph_title_status = true %}
+{% if VBP.bp_title_status.value %}
+  {% set paragraph_title_status = false %}
+{% endif %}
+
+{# Add custom paragraph CSS class(es). #}
+{% if VBP.bp_classes.value %}
+  {% set striped_custom_classes = VBP.bp_classes.value|striptags|lower %}
+  {% set split_custom_classes = striped_custom_classes|split(' ') %}
+  {% for custom_class in split_custom_classes %}
+    {% set clened_custom_class = [ custom_class|clean_class ] %}
+    {% set classes = classes|merge(clened_custom_class) %}
+  {%  endfor %}
+{% endif %}
+
+{# Prints Carousel template. #}
+{{ content|without('bp_title', 'bp_title_status', 'bp_slide_content','bp_slide_interval', 'bp_width', 'bp_background', 'bp_classes', 'bp_gutter') }}
+<div{{ attributes.addClass(classes).setAttribute('id', paragraph_id).setAttribute('data-interval', slide_interval_classes).setAttribute('data-ride', 'carousel') }} {% if VBP.background_image.url %} style="background-image:url({{- VBP.background_image.url -}});" {% endif %}>
+  {% if paragraph_title and paragraph_title_status %}<h2 class="text-center">{% spaceless %}{{- paragraph_title|striptags -}}{% endspaceless %}</h2>{% endif %}
+  {{ title_suffix }}
+  {% if add_container %}<div class="container">{% endif %}
+    <div class="row">
+      <div class="{{- VBP.bp_width.value -}}">
+        <ol class="carousel-indicators">
+          {% for key, item in content.bp_slide_content if key|first != '#' %}
+            <li class="{% if loop.first %}active{% endif %}" data-slide-to="{{ key }}" data-target="#{{ paragraph_id }}"></li>
+          {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          {% for key, item in content.bp_slide_content if key|first != '#' %}
+            <div class="paragraph--layout-slideshow__slide-{{ key + 1 }} item carousel-item{% if loop.first %} active{% endif %}">{{ item }}</div>
+          {% endfor %}
+        </div>
+        <a class="left carousel-control" href="#{{ paragraph_id }}" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#{{ paragraph_id }}" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  {% if add_container %}</div>{% endif %}
+</div>

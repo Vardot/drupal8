@@ -1,0 +1,51 @@
+charts_default_settings:
+  library: ''
+  type: line
+  display:
+    title: ''
+    colors:
+      - '#d8810f'
+      - '#0d233a'
+      - '#8bbc21'
+      - '#910000'
+      - '#1aadce'
+      - '#492970'
+      - '#f28f43'
+      - '#77a1e5'
+      - '#c42525'
+      - '#a6c96a'
+    title_position: out
+    tooltips: true
+    tooltips_use_html: false
+    data_markers: false
+    data_labels: false
+    legend: false
+    legend_position: right
+    background: ''
+    three_dimensional: 0
+    polar: 0
+    dimensions:
+      width: ''
+      width_units: '%'
+      height: ''
+      height_units: ''
+    gauge:
+      max: '100'
+      min: '0'
+      green_from: '85'
+      green_to: '100'
+      yellow_from: '50'
+      yellow_to: '85'
+      red_from: '0'
+      red_to: '50'
+  xaxis:
+    title: ''
+    labels_rotation: '0'
+  yaxis:
+    title: ''
+    min: ''
+    max: ''
+    prefix: ''
+    suffix: ''
+    decimal_count: ''
+    labels_rotation: '0'

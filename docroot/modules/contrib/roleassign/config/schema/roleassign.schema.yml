@@ -1,0 +1,12 @@
+# Schema for the configuration files of roleassign module.
+
+roleassign.settings:
+  type: config_object
+  label: 'Roles'
+  mapping:
+    roleassign_roles:
+      type: sequence
+      label: 'Select roles that should be available for assignment'
+      sequence:
+          type: string
+          label: 'role'

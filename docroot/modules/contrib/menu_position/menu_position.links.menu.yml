@@ -1,0 +1,15 @@
+menu_position_rule.admin_rules:
+  title: 'Menu position rules'
+  parent: system.admin_structure
+  description: 'Configure rules for menu positions.'
+  route_name: entity.menu_position_rule.order_form
+menu_position_rule.admin_settings:
+  title: 'Settings'
+  parent: menu_position_rule.admin_rules
+  description: 'Configure settings for menu positions.'
+  route_name: menu_position.settings
+menu_position_link:
+  class: 'Drupal\menu_position\Plugin\Menu\MenuPositionLink'
+  deriver: \Drupal\menu_position\Plugin\Derivative\MenuPositionLink
+  route_name: '<current>'
+  route_parameters: []

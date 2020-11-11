@@ -1,0 +1,17 @@
+name: 'Varbase Workflow'
+description: 'Provides a toolkit for robust, quick, and enterprise content moderation features.'
+type: module
+package: Varbase
+core_version_requirement: ^8 || ^9
+dependencies:
+  - drupal:workflows
+  - drupal:content_moderation
+  - moderation_sidebar:moderation_sidebar
+install:
+  - scheduler_content_moderation_integration
+  - admin_audit_trail_workflows
+
+# Information added by Drupal.org packaging script on 2020-10-27
+version: '2.0.0-beta1'
+project: 'varbase_workflow'
+datestamp: 1603808992

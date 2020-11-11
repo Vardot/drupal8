@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Better Login theme implementation to display a password reset page.
+ *
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - url: The base URL path of the Drupal website.
+ * - logo: Logo path of Drupal website.
+ * - site_name: Site name of Drupal website.
+ * - title: Title of a page.
+ * - register_url: A registration url of Drupal website.
+ *
+ *
+ * Regions:
+ * - page.highlighted: Items for the highlighted region.
+ * - page.content: The main content of the current page.
+ *
+ * @see betterlogin_preprocess_betterlogin()
+ */
+#}
+<div id="auth_box" class="reset">
+  <div id="top_part">
+    <h1 id="the_logo">
+      <a href="{{ url('<front>') }}">
+        <img src="{{ logo }}" alt="{{ site_name }}" />
+      </a>
+    </h1>
+  </div>
+
+  <div id="middle_part">
+    <h2 class="title">{{ title }}</h2>
+
+    {{ page.highlighted }}
+
+    {{ messages }}
+
+    {{ page.content }}
+  </div>
+
+  <div id="bottom_part">
+    <div class="login_link">
+      <a href="{{ path('user.login') }}">{{ 'Login'|t }}</a>
+    </div>
+
+    {% if register_url %}
+      <div class="register_link">
+        <a href="{{ register_url }}">{{ 'Register a new account'|t }}</a>
+      </div>
+    {% endif %}
+
+    <div class="back_link">
+      <a href="{{ url('<front>') }}">&larr; {{ 'Back'|t }} {{ site_name }}</a>
+    </div>
+  </div>
+</div>

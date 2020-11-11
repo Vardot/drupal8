@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Hero slider'
+type: varbase_heroslider_media
+description: 'A rich hero slider that allows you to display video and/or image slides.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains layout_builder_block_sanitizer.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function layout_builder_block_sanitizer_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the layout_builder_block_sanitizer module.
+    case 'help.page.layout_builder_block_sanitizer':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Clean up Layout Builder layouts of non-existent blocks.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

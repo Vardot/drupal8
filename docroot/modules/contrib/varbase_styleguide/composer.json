@@ -1,0 +1,46 @@
+{
+  "name": "drupal/varbase_styleguide",
+  "description": "Varbase custom styling guide components.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_styleguide",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_styleguide",
+    "source": "http://cgit.drupalcode.org/varbase_styleguide"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/styleguide": "~2.0",
+    "drupal/vmi": "~2.0"
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true
+  }
+}

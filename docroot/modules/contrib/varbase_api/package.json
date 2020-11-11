@@ -1,0 +1,23 @@
+{
+  "name": "varbase_api",
+  "description": "A JSON:API implementation with authentication and authorization that allows for easy ingestion of content by other applications.",
+  "license": "GPL-2.0",
+  "private": true,
+  "engines": {
+    "yarn": ">= 1.6",
+    "node": ">= 8.11"
+  },
+  "keywords": [
+    "Drupal",
+    "Varbase",
+    "JSON API",
+    "Open API"
+  ],
+  "author": "Vardot",
+  "scripts": {
+    "phpcs": "phpcs --standard=./.phpcs.xml .",
+    "phpcbf": "phpcbf --standard=./.phpcs.xml ."
+  },
+  "dependencies": {  },
+  "devDependencies": {  }
+}

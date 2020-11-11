@@ -1,0 +1,35 @@
+uuid: 62e1fce8-4a16-4951-9580-d4083e1bcc49
+langcode: en
+status: true
+dependencies:
+  module:
+    - login_destination
+id: login_destination--login_destination
+disabled: true
+path: login_destination/login_destination
+resourceType: login_destination--login_destination
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

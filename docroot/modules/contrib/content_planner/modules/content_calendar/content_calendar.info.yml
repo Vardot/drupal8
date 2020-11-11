@@ -1,0 +1,15 @@
+name: 'Content Calendar'
+type: module
+description: 'Drupal calendar module helps content and marketing teams to plan, organise and manage content.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'Content Planner'
+dependencies:
+  - content_planner:content_planner
+configure: content_calendar.settings
+hidden: true
+
+# Information added by Drupal.org packaging script on 2020-07-15
+version: '8.x-1.0-beta12'
+project: 'content_planner'
+datestamp: 1594844961

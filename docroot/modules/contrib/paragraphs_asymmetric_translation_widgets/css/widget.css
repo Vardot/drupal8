@@ -1,0 +1,37 @@
+.js .field--widget-paragraphs-classic-asymmetric .dropbutton-wrapper {
+  display: inline-flex;
+  padding-right: 0em;
+  margin-right: 0em;
+  /* Override 600px breakpoint from core. */
+  width: auto;
+}
+
+.js .field--widget-paragraphs-classic-asymmetric .dropbutton-widget {
+  position: relative;
+}
+
+.js .field--widget-paragraphs-classic-asymmetric .field-multiple-table {
+  margin-bottom: 10px;
+}
+
+.js .field--widget-paragraphs-classic-asymmetric td {
+  padding: 10px 0px 10px 0px;
+}
+
+.js .field--widget-paragraphs-classic-asymmetric .field-multiple-drag {
+  vertical-align: top;
+}
+.js .field--widget-paragraphs-classic-asymmetric .draggable .tabledrag-handle {
+  padding-right: 0;
+  margin-left: 0;
+}
+.js .field--widget-paragraphs-classic-asymmetric .tabledrag-handle .handle {
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0.2em;
+}
+
+.js .field--widget-paragraphs-classic-asymmetric .delta-order {
+  padding-right: 10px;
+  text-align: right;
+}

@@ -1,0 +1,41 @@
+// Modal Paragraph.
+// .paragraph--bp-modal.html.twig
+// -----------------------------------------------------------------------------
+@import "../../node_modules/rfs/scss";                 // RFS ~9.0 mixins.
+// -----------------------------------------------------------------------------
+
+.paragraph--type--bp-modal {
+  @include padding(0.625rem);
+}
+
+.paragraph--type--bp-modal {
+  .btn.btn-modal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.modal {
+
+  .modal-header {
+    @include padding(0.9375rem 1.875rem);
+  }
+
+  .modal-title {
+    font-weight: bold;
+  }
+
+  .modal-footer {
+    text-align: left;
+  }
+
+  .modal-body .paragraph,
+  .modal-footer .paragraph {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    position: initial;
+    @include padding(0.9375rem 1.875rem 0.9375rem 1.875rem);
+  }
+}

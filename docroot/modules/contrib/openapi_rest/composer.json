@@ -1,0 +1,9 @@
+{
+    "name": "drupal/openapi_rest",
+    "type": "drupal-module",
+    "description": "OpenAPI support for the REST module.",
+    "require": {
+        "drupal/core": "^8 || ^9",
+        "drupal/openapi": "^2.0"
+    }
+}

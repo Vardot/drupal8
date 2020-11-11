@@ -1,0 +1,35 @@
+uuid: acb56456-6eb6-4adc-a3a9-c577cfba95ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy_menu
+id: taxonomy_menu--taxonomy_menu
+disabled: true
+path: taxonomy_menu/taxonomy_menu
+resourceType: taxonomy_menu--taxonomy_menu
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

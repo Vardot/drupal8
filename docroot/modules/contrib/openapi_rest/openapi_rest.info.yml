@@ -1,0 +1,16 @@
+name: OpenAPI REST
+description: OpenAPI support for the REST module.
+type: module
+package: Web Services
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - openapi:openapi (>=8.x-2.0-rc1)
+  - schemata:schemata
+  - schemata:schemata_json_schema
+
+
+# Information added by Drupal.org packaging script on 2020-04-01
+version: '8.x-2.0-rc2'
+project: 'openapi_rest'
+datestamp: 1585779666

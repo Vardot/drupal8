@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains module install and uninstall functionality.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function content_planner_install() {
+  \Drupal::service('module_installer')->install([
+    'content_kanban',
+    'content_calendar',
+  ]);
+  \Drupal::service("router.builder")->rebuild();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function content_planner_uninstall() {
+  \Drupal::configFactory()->getEditable('image.style.content_planner_user_block_profile_image')->delete();
+}

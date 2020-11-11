@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bp_accordion_section.bp_accordion_section_body
+    - field.field.paragraph.bp_accordion_section.bp_accordion_section_title
+    - paragraphs.paragraphs_type.bp_accordion_section
+  module:
+    - paragraphs
+id: paragraph.bp_accordion_section.default
+targetEntityType: paragraph
+bundle: bp_accordion_section
+mode: default
+content:
+  bp_accordion_section_body:
+    type: paragraphs
+    weight: 1
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: closed
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  bp_accordion_section_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

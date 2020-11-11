@@ -1,0 +1,60 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.varbase_media_block
+    - field.field.block_content.varbase_media_block.field_link
+    - field.field.block_content.varbase_media_block.field_media
+    - field.field.block_content.varbase_media_block.field_media_view_mode
+  module:
+    - link
+    - maxlength
+    - media_library
+    - media_library_edit
+id: block_content.varbase_media_block.default
+targetEntityType: block_content
+bundle: varbase_media_block
+mode: default
+content:
+  field_link:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: null
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: link_default
+    region: content
+  field_media:
+    type: media_library_widget
+    weight: 1
+    settings:
+      media_types:
+        - audio
+        - file
+        - image
+        - remote_video
+        - video
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+    region: content
+  field_media_view_mode:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  translation: true

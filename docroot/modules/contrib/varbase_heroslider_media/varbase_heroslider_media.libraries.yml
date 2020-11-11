@@ -1,0 +1,46 @@
+# Varbase hero slider media general styling.
+general-styling:
+  css:
+    component:
+      css/components/varbase-heroslider-media.component.css: { }
+        
+# Varbase hero slider media default general scripts.
+general-scripts:
+  js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+    - slick/slick
+
+# Default empty view style.
+view-empty:
+  css:
+    component:
+      css/components/varbase-heroslider-media.view-empty.component.css: { }
+
+# Behaviors of Varbase hero slider media for local video scripts.
+local_video_slider:
+  js:
+    js/video.heroslider.local.js: { }
+
+# Behaviors of Varbase hero slider media for Youtube video scripts.
+youtube_video_slider:
+  js:
+    js/video.heroslider.youtube.js: { weight: -1 }
+
+# Behaviors of Varbase hero slider media for vimeo embeded videos scripts.
+vimeo_video_slider:
+  js:
+    js/video.heroslider.vimeo.js: { weight: -1 }
+
+# Oembed frame for Youtube video behaviors.
+oembed-frame-video-youtube:
+  js:
+    js/oembed-frame.heroslider.youtube.js: { }
+
+# Oembed frame for Vimeo video behaviors.
+oembed-frame-video-vimeo:
+  js:
+    js/oembed-frame.heroslider.vimeo.js: { }

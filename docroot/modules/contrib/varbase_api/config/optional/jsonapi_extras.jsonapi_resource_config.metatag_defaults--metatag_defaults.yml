@@ -1,0 +1,35 @@
+uuid: 44c63a8d-54cd-4c2b-8cc0-e5d8cb81b4ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - metatag
+id: metatag_defaults--metatag_defaults
+disabled: true
+path: metatag_defaults/metatag_defaults
+resourceType: metatag_defaults--metatag_defaults
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

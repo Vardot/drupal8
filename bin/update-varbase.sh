@@ -1,0 +1,1 @@
+../vendor/vardot/varbase-updater/scripts/update/update-varbase.sh

@@ -1,0 +1,23 @@
+name: 'Varbase Landing Page (Paragraphs)'
+description: 'Provides the basis for Landing Pages, which are built to include appealing stacked components that are visually separate.'
+type: module
+package: Varbase
+core_version_requirement: ^9
+dependencies:
+  - varbase_bootstrap_paragraphs:varbase_bootstrap_paragraphs
+  - varbase_bootstrap_paragraphs:vbp_text_and_image
+install:
+  - user
+  - node
+  - menu_ui
+  - varbase_seo
+  - paragraphs_features
+  - paragraphs_asymmetric_translation_widgets
+  - length_indicator
+  - advanced_text_formatter
+  - maxlength
+
+# Information added by Drupal.org packaging script on 2020-11-02
+version: '9.0.0-alpha2'
+project: 'varbase_landing'
+datestamp: 1604306869

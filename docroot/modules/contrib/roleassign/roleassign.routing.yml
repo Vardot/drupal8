@@ -1,0 +1,7 @@
+roleassign.settings:
+  path: '/admin/people/roleassign'
+  defaults:
+    _form: '\Drupal\roleassign\Form\RoleAssignAdminForm'
+    _title: 'Role assign'
+  requirements:
+    _permission: 'administer permissions'

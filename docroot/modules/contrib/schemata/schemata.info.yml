@@ -1,0 +1,13 @@
+name: Schemata
+type: module
+description: Provide schema definitions of Drupal entities for type validation, code generation, and documentation.
+core: 8.x
+core_version_requirement: '^8 || ^9'
+package: Web services
+dependencies:
+  - drupal:serialization
+
+# Information added by Drupal.org packaging script on 2020-04-01
+version: '8.x-1.0-beta2'
+project: 'schemata'
+datestamp: 1585777922

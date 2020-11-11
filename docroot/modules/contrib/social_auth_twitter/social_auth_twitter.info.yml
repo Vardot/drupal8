@@ -1,0 +1,8 @@
+name: Social Auth Twitter
+description: Social Auth integration for Twitter
+core_version_requirement: ^8 || ^9
+type: module
+package: Social
+configure: social_auth_twitter.settings_form
+dependencies:
+  - social_auth:social_auth

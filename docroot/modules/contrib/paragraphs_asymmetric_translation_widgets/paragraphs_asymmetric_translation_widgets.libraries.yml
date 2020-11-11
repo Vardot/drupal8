@@ -1,0 +1,6 @@
+drupal.paragraphs_asymmetric_translation_widgets.widget:
+  dependencies:
+    - paragraphs/drupal.paragraphs.admin
+  css:
+    theme:
+      css/widget.css: {}

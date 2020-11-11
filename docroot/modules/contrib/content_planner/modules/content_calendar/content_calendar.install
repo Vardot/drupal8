@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains install and uninstall functionality of the module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function content_calendar_uninstall() {
+  \Drupal::configFactory()->getEditable('image.style.content_calendar_user_thumb')->delete();
+}

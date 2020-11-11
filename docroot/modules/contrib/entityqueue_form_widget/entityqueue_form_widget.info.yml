@@ -1,0 +1,12 @@
+name: 'Entityqueue Form Widget'
+type: module
+description: "A handy module to populate a form element in the sidebar of node's add and edit pages to allow editors to add content to entityqueues directly from add/edit forms."
+package: Entityqueue
+core_version_requirement: ^8 || ^9
+dependencies:
+  - entityqueue:entityqueue
+
+# Information added by Drupal.org packaging script on 2020-06-18
+version: '2.0.0'
+project: 'entityqueue_form_widget'
+datestamp: 1592467303

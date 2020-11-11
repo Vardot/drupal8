@@ -1,0 +1,5 @@
+varbase_api.settings:
+  route_name: varbase_api.settings
+  title: 'Varbase API settings'
+  description: 'Configure Varbase API settings.'
+  parent: varbase_core.settings_index

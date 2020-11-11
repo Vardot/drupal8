@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Code and functions for the Prevent homepage deletion module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Url;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function prevent_homepage_deletion_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the prevent_homepage_deletion module.
+    case 'help.page.prevent_homepage_deletion':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t("This module provides a new permission: delete
+        homepage node. Only users with this permission can delete the node that
+        is currently configured as the home page of the site. Other users will
+        not see the delete-tab, nor the delete option in the content overview.")
+        . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function prevent_homepage_deletion_node_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if ($operation == 'delete') {
+    if (!_prevent_homepage_deletion_check($entity, $account)) {
+      return AccessResult::forbidden();
+    }
+    else {
+      return AccessResult::neutral();
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Helper function that checks if the current user can delete this node.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Session\AccountInterface $account
+ *
+ * @return bool
+ */
+function _prevent_homepage_deletion_check(EntityInterface $entity, AccountInterface $account) {
+  $candelete = TRUE;
+
+  $entity_id = $entity->id();
+  $frontpage_id = 0;
+
+  $config = \Drupal::config('system.site');
+  $front_uri = $config->get('page.front');
+  $params = Url::fromUri("internal:" . $front_uri)->getRouteParameters();
+
+  if (!empty($params)) {
+    $entity_type = key($params);
+    $frontpage_id = $params[$entity_type];
+  }
+
+  if (\Drupal::service('path.matcher')->isFrontPage() || $entity_id === $frontpage_id) {
+    // Check for permission.
+    if ($account->hasPermission('delete_homepage_node')) {
+      $candelete = TRUE;
+    }
+    else {
+      $candelete = FALSE;
+    }
+  }
+
+  return $candelete;
+}

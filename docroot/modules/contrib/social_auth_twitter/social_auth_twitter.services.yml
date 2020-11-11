@@ -1,0 +1,4 @@
+services:
+  twitter_auth.manager:
+    class: Drupal\social_auth_twitter\TwitterAuthManager
+    arguments: ['@session','@request_stack']

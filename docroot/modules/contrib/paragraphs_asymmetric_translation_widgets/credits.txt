@@ -1,0 +1,6 @@
+List gathered from this task:
+https://www.drupal.org/project/paragraphs/issues/2461695
+
+Original suggested commit message:
+
+git commit -m 'Issue #2461695 by JeroenT, weseze, efpapado, janchojnacki, Tom Robert, FooZee, Jo Fitzgerald, flyke, Leksat, blazey, Sutharsan, seanB, bucefal91, krlucas, derhasi, vilepickle, killua99, Rene Bakx, RajabNatshah, hoebekewim, MarieKirya, Andriy Khomych, mikemiles86, drupal_beast, andreasderijcke, ignat.volosky, scaldinglake, scuba_fly, ndf: Support asymmetric translations' --author="blazey <blazey@353861.no-reply.drupal.org>"

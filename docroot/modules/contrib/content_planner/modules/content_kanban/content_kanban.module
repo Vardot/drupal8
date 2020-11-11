@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * @file
+ * Contains content_kanban.module.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_theme().
+ */
+function content_kanban_theme($existing, $type, $theme, $path) {
+
+  return [
+
+    'content_kanban' => [
+      'variables' => [
+        'kanban_id' => NULL,
+        'kanban_label' => NULL,
+        'filter_form' => [],
+        'permissions' => [],
+        'headers' => [],
+        'columns' => [],
+        'addEntitiesLinks' => [],
+      ],
+    ],
+
+    'content_kanban_column' => [
+      'variables' => [
+        'column_id' => NULL,
+        'workflow_id' => NULL,
+        'state_id' => NULL,
+        'state_label' => NULL,
+        'entities' => [],
+      ],
+    ],
+
+    'content_kanban_column_entry' => [
+      'variables' => [
+        'entity' => NULL,
+        'entity_type' => '',
+        'entity_id' => '',
+        'entity_type_config' => NULL,
+        'user_picture' => NULL,
+        'workflow_state' => NULL,
+        'operation_links' => NULL,
+        'item_options' => [],
+      ],
+    ],
+
+    'content_kanban_log_recent_activity' => [
+      'variables' => [
+        'show_user_thumb' => FALSE,
+        'entries' => [],
+      ],
+    ],
+
+    'content_state_statistic' => [
+      'variables' => [
+        'data' => FALSE,
+      ],
+    ],
+
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function content_kanban_entity_presave(EntityInterface $entity) {
+  // Check to be content entity.
+  if ($entity instanceof ContentEntityInterface) {
+    //@var $moderation_information \Drupal\content_kanban\KanbanWorkflowService 
+    $kanban_workflow_service = \Drupal::service('content_kanban.kanban_workflow_service');
+    $kanban_workflow_service->onEntityPresave($entity, \Drupal::currentUser());
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function content_kanban_preprocess_content_calendar_entry(&$variables) {
+
+  /* @var $kanban_workflow_service \Drupal\content_kanban\KanbanWorkflowService */
+  $kanban_workflow_service = \Drupal::service('content_kanban.kanban_workflow_service');
+
+  // Fully load node.
+  $node = Node::load($variables['node']->nid);
+
+  // Get workflow state label from node.
+  $workflow_state_label = $kanban_workflow_service->getCurrentStateLabel($node);
+
+  // Add label to template.
+  $variables['workflow_state'] = $workflow_state_label;
+}
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function content_kanban_toolbar_alter(&$items) {
+
+  $links =& $items['content_planner']['tray']['links']['#items'];
+
+  if (\Drupal::currentUser()->hasPermission('manage own content with content kanban') || \Drupal::currentUser()->hasPermission('manage any content with content kanban') || \Drupal::currentUser()->hasPermission('administer content kanban settings')) {
+    $links['content_kanban'] = [
+      '#type' => 'link',
+      '#title' => t('Content Kanban'),
+      '#url' => Url::fromRoute('content_kanban.kanban'),
+      '#attributes' => [
+        'class' => 'toolbar-icon toolbar-icon-system-admin-structure',
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_form_form_id_alter().
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function content_kanban_form_workflow_state_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Enable default revision options to all workflows states to avoid issue:
+  // https://www.drupal.org/project/content_planner/issues/3010615
+  $form['type_settings']['default_revision']['#disabled'] = false;
+}

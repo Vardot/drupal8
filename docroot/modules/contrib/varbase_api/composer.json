@@ -1,0 +1,64 @@
+{
+  "name": "drupal/varbase_api",
+  "description": "A JSON:API implementation with authentication and authorization that allows for easy ingestion of content by other applications.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_editor",
+  "notification-url": "https://packages.drupal.org/8/downloads",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_api",
+    "source": "http://cgit.drupalcode.org/varbase_api"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/consumers": "~1.0",
+    "drupal/openapi": "~2.0",
+    "drupal/openapi_jsonapi": "~2.0",
+    "drupal/openapi_rest": "~2.0",
+    "drupal/openapi_ui_redoc": "~1.0",
+    "drupal/openapi_ui_swagger": "~1.0",
+    "drupal/simple_oauth": "~4.0",
+    "drupal/schema_metatag": "~2.0",
+    "drupal/restui": "~1.0",
+    "drupal/jsonapi_extras": "~3.0"
+  },
+  "suggest": {
+    "swagger-api/swagger-ui": "~3.0: Provides the Swagger UI library which is a collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API."
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "drupal-libraries": {
+      "libraries": [
+        {"name": "swagger-ui", "package": "swagger-api/swagger-ui"}
+      ]
+    },
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true
+  }
+}

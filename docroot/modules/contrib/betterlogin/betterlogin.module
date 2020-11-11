@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * Make the login screens better :).
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function betterlogin_help($path, $arg) {
+  switch ($path) {
+    case 'help.page.betterlogin':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Better Login module is used to remove issue of styling Drupal login/password/registration forms. It is slightly inspired by the way Wordpress login forms work, and uses three page templates to change the style of the forms. It is very simple to use, just install the Better Login module and it starts working immediately.') . '</p>';
+      $output .= '<p>' . t('For more information, see the <a href="https://www.drupal.org/project/betterlogin">BetterLogin module</a>.') . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<p>' . t('This module uses four templates:') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('page--user--login.tpl.php') . '</li>';
+      $output .= '<li>' . t('page--user--password.tpl.php') . '</li>';
+      $output .= '<li>' . t('page--user--register.tpl.php') . '</li>';
+      $output .= '<li>' . t('page--user--reset.tpl.php') . '</li>';
+      $output .= '</ul>';
+      $output .= '<p>' . t('These sit in the /templates directory in the module. You can override them by copying the templates out of the module and into your theme directory.') . '</p>';
+      $output .= '<p>' . t('Alternatively if you are happy with the templates you can easily just alter the CSS styles in your theme.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Autofocus on the username field.
+ * Some proper page titles would be nice for a change,
+ * User account is a bit boring..
+ */
+function betterlogin_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Autofocus on the username field.
+  // And add some pretty CSS :).
+  // And a few other things too...
+  if ($form_id == 'user_login_form' || $form_id == 'user_register_form' || $form_id == 'user_pass' || $form_id == 'user_pass_reset') {
+    $form['name']['#attributes']['autofocus'] = 'autofocus';
+    // We don't really need descriptions to tell us what we already know...
+    unset($form['name']['#description']);
+    unset($form['pass']['#description']);
+
+    // Add in some CSS.
+    $form['#attached']['library'][] = 'betterlogin/betterlogin_css';
+  }
+
+  // Exit if we're not on a target url, since the form may have been rendered
+  // programmatically. We don't want to change page titles on other pages.
+  $pages = ['login', 'register', 'password', 'reset'];
+  // Retrieve an array which contains the path pieces.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  if (!in_array($path_args, $pages)) {
+    return;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function betterlogin_theme() {
+  $theme['page__user__login'] = [
+    'preprocess functions' => ['betterlogin_preprocess_betterlogin'],
+  ];
+  $theme['page__user__register'] = [
+    'preprocess functions' => ['betterlogin_preprocess_betterlogin'],
+  ];
+  $theme['page__user__password'] = [
+    'preprocess functions' => ['betterlogin_preprocess_betterlogin'],
+  ];
+  $theme['page__user__reset'] = [
+    'preprocess functions' => ['betterlogin_preprocess_betterlogin'],
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function betterlogin_preprocess_betterlogin(&$variables) {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['logo'] = theme_get_setting('logo.url');
+  $variables['title'] = $variables['page']['#title'];
+  $variables['#cache']['contexts'][] = 'route';
+  $variables['page']['#cache']['contexts'][] = 'route';
+
+  // Only show the register account link if visitors have permission to
+  // register their accounts.
+  $register_url = Url::fromRoute('user.register');
+  if ($register_url->access()) {
+    $variables['register_url'] = $register_url->toString();
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function betterlogin_preprocess_html(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  switch ($current_path) {
+    case '/user/login':
+      $variables['head_title']['title'] = t('Login');
+      break;
+
+    case '/user/password':
+      $variables['head_title']['title'] = t('Forgot your password?');
+      break;
+
+    case '/user/register':
+      $variables['head_title']['title'] = t('Register');
+      break;
+
+    case '/user/reset':
+      $variables['head_title']['title'] = t('Reset password');
+      break;
+  }
+
+  $variables['#cache']['contexts'][] = 'route';
+  $variables['page']['#cache']['contexts'][] = 'route';
+}

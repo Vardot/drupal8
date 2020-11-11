@@ -1,0 +1,18 @@
+name: 'Entity usage test'
+type: module
+description: 'Support module for the Entity Usage module tests.'
+core_version_requirement: ^8.8 || ^9
+package: Testing
+# version: VERSION
+dependencies:
+  - entity_usage
+  - entity_embed
+  - text
+  - node
+  - ckeditor
+  - media
+
+# Information added by Drupal.org packaging script on 2020-03-25
+version: '8.x-2.0-beta3'
+project: 'entity_usage'
+datestamp: 1585145910

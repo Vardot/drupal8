@@ -1,0 +1,19 @@
+id: d6_roleassign_settings
+label: RoleAssign settings
+migration_tags:
+  - Drupal 6
+source:
+  plugin: variable
+  variables:
+    - roleassign_roles
+process:
+  roleassign_roles:
+    plugin: migration
+    migration: d6_user_role
+    source: roleassign_roles
+destination:
+  plugin: config
+  config_name: roleassign.settings
+migration_dependencies:
+  required:
+    - d6_user_role

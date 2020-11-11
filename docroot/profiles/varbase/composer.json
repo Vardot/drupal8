@@ -1,0 +1,158 @@
+{
+  "name": "vardot/varbase",
+  "description": "Varbase: The Ultimate Drupal 8 CMS Starter Kit (Bootstrap Ready) | by Vardot",
+  "type": "drupal-profile",
+  "homepage": "https://www.drupal.org/project/varbase",
+  "notification-url": "https://packages.drupal.org/8/downloads",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/issues/varbase",
+    "source": "http://cgit.drupalcode.org/varbase"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+		"composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/core-composer-scaffold": "^9",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/varbase_core": "~9.0",
+    "drupal/varbase_api": "~9.0",
+    "drupal/varbase_media": "~9.0",
+    "drupal/varbase_bootstrap_paragraphs": "~9.0",
+    "drupal/varbase_editor": "~9.0",
+    "drupal/varbase_landing": "~9.0",
+    "drupal/varbase_layout_builder": "~9.0",
+    "drupal/varbase_heroslider_media": "~9.0",
+    "drupal/varbase_carousels": "~9.0",
+    "drupal/varbase_blog": "~9.0",
+    "drupal/varbase_search": "~9.0",
+    "drupal/varbase_seo": "~9.0",
+    "drupal/varbase_auth": "~9.0",
+    "drupal/varbase_total_control": "~9.0",
+    "drupal/varbase_styleguide": "~9.0",
+    "drupal/varbase_email": "~9.0",
+    "drupal/varbase_workflow": "~2.0",
+    "drupal/vartheme_bs4": "~9.0",
+    "drupal/vartheme_claro": "~2.1",
+    "bower-asset/objectfitpolyfill": "~2.0",
+    "bower-asset/chartjs": "2.7.*",
+    "bower-asset/c3": "0.4.*",
+    "bower-asset/d3": "3.5.*",
+    "bower-asset/jqueryui-touch-punch": "*",
+    "npm-asset/masonry-layout": "~4.0",
+    "npm-asset/imagesloaded": "~4.0",
+    "npm-asset/dropzone": "~4.0",
+    "npm-asset/blazy": "~1.0",
+    "npm-asset/slick-carousel": "~1.0",
+    "npm-asset/ace-builds": "~1.0",
+    "swagger-api/swagger-ui": "~3.0"
+  },
+  "require-dev": {
+    "drupal/core-dev": "~9.0",
+    "drupal/console": "~1.0",
+    "drush/drush": "~10.0",
+    "phing/phing": "~2.0",
+    "drupal/drupal-extension": "~4.0",
+    "emuse/behat-html-formatter": "^0.2.0"
+  },
+  "config": {
+    "bin-dir": "bin/",
+    "secure-http": false,
+    "preferred-install": {
+      "drupal/core": "dist"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Varbase\\composer\\": "src/composer"
+    }
+  },
+  "scripts": {
+    "pre-install-cmd": ["Varbase\\composer\\ScriptHandler::checkComposerVersion"],
+    "pre-update-cmd": ["Varbase\\composer\\ScriptHandler::checkComposerVersion"],
+    "post-install-cmd": [
+      "Varbase\\composer\\ScriptHandler::createRequiredFiles",
+      "Varbase\\composer\\ScriptHandler::removeGitDirectories",
+      "./bin/phing push"
+    ],
+    "post-update-cmd": [
+      "Varbase\\composer\\ScriptHandler::createRequiredFiles",
+      "Varbase\\composer\\ScriptHandler::removeGitDirectories",
+      "./bin/phing push"
+    ],
+    "post-drupal-scaffold-cmd": ["Varbase\\composer\\ScriptHandler::postDrupalScaffoldProcedure"],
+    "create-new-vartheme": "scripts/create-new-vartheme.sh"
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "docroot/"
+      }
+    },
+    "branch-alias": {
+      "dev-9.0.x": "9.0.x-dev"
+    },
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "docroot/core": ["type:drupal-core"],
+      "docroot/profiles/{$name}": ["type:drupal-profile"],
+      "docroot/modules/contrib/{$name}": ["type:drupal-module"],
+      "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
+      "docroot/libraries/slick": ["npm-asset/slick-carousel"],
+      "docroot/libraries/ace": ["npm-asset/ace-builds"],
+      "docroot/libraries/jquery-ui-touch-punch": ["bower-asset/jqueryui-touch-punch"],
+      "docroot/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ],
+      "docroot/modules/custom/{$name}": ["type:drupal-custom-module"],
+      "docroot/themes/custom/{$name}": ["type:drupal-custom-theme"],
+      "drush/contrib/{$name}": ["type:drupal-drush"]
+    },
+    "drupal-libraries": {
+      "library-directory": "docroot/libraries",
+      "libraries": [
+        {"name": "objectfitpolyfill", "package": "bower-asset/objectfitpolyfill"},
+        {"name": "chartjs", "package": "bower-asset/chartjs"},
+        {"name": "c3","package": "bower-asset/c3"},
+        {"name": "d3", "package": "bower-asset/d3"},
+        {"name": "dropzone","package": "npm-asset/dropzone"},
+        {"name": "blazy", "package": "npm-asset/blazy"},
+        {"name": "slick", "package": "npm-asset/slick-carousel"},
+        {"name": "ace", "package": "npm-asset/ace-builds"},
+        {"name": "jquery-ui-touch-punch", "package": "bower-asset/jqueryui-touch-punch"},
+        {"name": "imagesloaded", "package": "npm-asset/imagesloaded"},
+        {"name": "swagger-ui", "package": "swagger-api/swagger-ui"}
+      ]
+    },
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patchLevel": {
+      "drupal/core": "-p2"
+    }
+  }
+}

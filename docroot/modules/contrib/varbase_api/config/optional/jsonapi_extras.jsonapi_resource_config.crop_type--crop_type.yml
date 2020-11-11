@@ -1,0 +1,35 @@
+uuid: f02cd7d8-95e8-4b65-b1f4-0e7252542786
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+id: crop_type--crop_type
+disabled: true
+path: crop_type/crop_type
+resourceType: crop_type--crop_type
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  type:
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false
+  _core:
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+    disabled: false

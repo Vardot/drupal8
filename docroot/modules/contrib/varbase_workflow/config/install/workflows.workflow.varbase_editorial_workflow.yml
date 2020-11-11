@@ -1,0 +1,69 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_moderation
+id: varbase_editorial_workflow
+label: Editorial
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      published: false
+      default_revision: true
+      label: 'Archived / Unpublished'
+      weight: 0
+    draft:
+      published: false
+      default_revision: false
+      label: Draft
+      weight: -3
+    review:
+      published: false
+      default_revision: false
+      label: 'In review'
+      weight: -2
+    published:
+      label: Published
+      published: true
+      default_revision: true
+      weight: -1
+  transitions:
+    archive:
+      label: 'Archive / Unpublish'
+      to: archived
+      weight: 1
+      from:
+        - published
+    archived_published:
+      label: 'Restore from archive'
+      from:
+        - archived
+      to: published
+      weight: 2
+    create_new_draft:
+      label: 'Create new draft'
+      to: draft
+      weight: -3
+      from:
+        - archived
+        - draft
+        - review
+        - published
+    publish:
+      label: Publish
+      to: published
+      weight: -1
+      from:
+        - draft
+        - review
+        - published
+    review:
+      label: 'Send to review'
+      to: review
+      weight: -2
+      from:
+        - draft
+        - review
+  default_moderation_state: draft
+  entity_types: {  }

@@ -1,0 +1,27 @@
+social_auth_linkedin.redirect_to_linkedin:
+  path: 'user/login/linkedin'
+  defaults:
+    _controller: '\Drupal\social_auth_linkedin\Controller\LinkedInAuthController::redirectToProvider'
+  requirements:
+    # Anonymous users can log in, but authenticated users can also associate a new provider.
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+social_auth_linkedin.callback:
+  path: 'user/login/linkedin/callback'
+  defaults:
+    _controller: '\Drupal\social_auth_linkedin\Controller\LinkedInAuthController::callback'
+  requirements:
+    # Anonymous users can log in, but authenticated users can also associate a new provider.
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+social_auth_linkedin.settings_form:
+  path: 'admin/config/social-api/social-auth/linkedin'
+  defaults:
+    _title: 'Social Auth LinkedIn settings'
+    _form: '\Drupal\social_auth_linkedin\Form\LinkedInAuthSettingsForm'
+  requirements:
+    _permission: 'administer social api authentication'

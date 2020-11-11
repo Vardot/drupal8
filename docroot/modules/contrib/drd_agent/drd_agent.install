@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\drd_agent\Agent\Remote\Requirements;
+
+/**
+ * Implements hook_requirements().
+ *
+ * {@inheritdoc}
+ */
+function drd_agent_requirements($phase) {
+  $requirements = [];
+  if (!empty($_SERVER['HTTP_X_DRD_VERSION']) && $phase === 'runtime') {
+    $requirements = Requirements::create(Drupal::getContainer())->collect();
+  }
+  return $requirements;
+}

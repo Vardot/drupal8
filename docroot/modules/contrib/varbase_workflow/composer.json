@@ -1,0 +1,63 @@
+{
+  "name": "drupal/varbase_workflow",
+  "description": "Provides a toolkit for robust, quick, and enterprise content moderation features.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_workflow",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_workflow",
+    "source": "http://cgit.drupalcode.org/varbase_workflow"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+      },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^8 || ^9 || ~10.0.0",
+    "drupal/moderation_sidebar": "1.4",
+    "drupal/content_planner": "1.0-beta12",
+    "drupal/scheduler": "~1.0",
+    "drupal/content_moderation_notifications": "~3.0",
+    "drupal/scheduler_content_moderation_integration": "~1.0" 
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/content_planner": {
+        "Issue #3010615 Kanban Published to Draft workflow Issue":
+        "https://www.drupal.org/files/issues/2020-05-06/kanban-published-to-draft-workflow-issue-3010615-16.patch",
+        "Issue #3167669: Fix Drupal 9 compatibility for the Content Planner sub modules":
+        "https://www.drupal.org/files/issues/2020-09-04/content_planner-core_incompatibility-3167669-2.patch",
+        "Issue #3176550: Fix the RTL style for Content Calendar":
+        "https://www.drupal.org/files/issues/2020-10-13/content-calendar-rtl-3176550-4.patch"
+      },
+      "drupal/moderation_sidebar": {
+        "Issue #3157219: Fix RTL Moderation Sidebar style":
+        "https://www.drupal.org/files/issues/2020-07-06/3157219-3.patch"
+      }
+    }
+  }
+}

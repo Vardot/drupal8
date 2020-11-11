@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Contains content_planner.module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function content_planner_theme($existing, $type, $theme, $path) {
+
+  return [
+
+    'content_planner_dashboard' => [
+      'variables' => [
+        'blocks' => [],
+      ],
+    ],
+
+    'content_planner_dashboard_block' => [
+      'variables' => [
+        'css_id' => NULL,
+        'has_permission' => FALSE,
+        'block_id' => NULL,
+        'name' => [],
+        'block' => [],
+      ],
+    ],
+
+    'content_planner_dashboard_user_block' => [
+      'variables' => [
+        'users' => [],
+      ],
+    ],
+
+  ];
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function content_planner_toolbar() {
+
+  $items = [];
+
+  $links['dashboard'] = [
+    '#type' => 'link',
+    '#title' => t('Dashboard'),
+    '#url' => Url::fromRoute('content_planner.dashboard'),
+    '#attributes' => [
+      'class' => 'toolbar-icon toolbar-icon-system-admin-reports',
+    ],
+
+  ];
+
+  $items['content_planner'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Content Planner'),
+      '#url' => Url::fromRoute('content_planner.dashboard'),
+      '#options' => [
+        'attributes' => [
+          'title' => t('Content Planner'),
+          'class' => 'trigger toolbar-item toolbar-icon toolbar-icon-system-admin-content',
+        ],
+      ],
+    ],
+    'tray' => [
+      '#heading' => t('Content Planner sections'),
+      'links' => [
+        '#theme' => 'item_list',
+        '#items' => $links,
+      ],
+
+    ],
+    '#weight' => -10,
+    '#cache' => [
+      'contexts' => [
+        'user.permissions',
+      ],
+    ],
+  ];
+
+  if ((\Drupal::currentUser()->hasPermission('view content planner dashboard')) || (\Drupal::currentUser()->hasPermission('administer content planner dashboard settings'))) {
+    return $items;
+  }
+
+}

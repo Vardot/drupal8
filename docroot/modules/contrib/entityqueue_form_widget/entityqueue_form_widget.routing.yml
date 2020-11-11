@@ -1,0 +1,7 @@
+entityqueue_form_widget.content:
+  path: '/entityqueue_form_widget'
+  defaults:
+    _controller: 'Drupal\entityqueue_form_widget\Controller\EntityQueueFormWidgetController::content'
+    _title: 'Entityqueue Form Widget'
+  requirements:
+    _permission: 'access content'

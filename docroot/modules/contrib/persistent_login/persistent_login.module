@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Contains persistent_login.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function persistent_login_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  _persistent_login_add_form_field($form, $form_state);
+}
+
+/**
+ * Helper function to add persistent login checkbox to a form.
+ */
+function _persistent_login_add_form_field(&$form, FormStateInterface $form_state) {
+  $form['persistent_login'] = [
+    '#type' => 'checkbox',
+    '#title' => \Drupal::config('persistent_login.settings')->get('login_form.field_label'),
+    '#cache' => [
+      'tags' => ['config:persistent_login.settings'],
+    ],
+  ];
+  $form['#submit'][] = 'persistent_login_user_login_form_submit';
+}
+
+/**
+ * Submit handler for login forms to set persistent login properties.
+ */
+function persistent_login_user_login_form_submit(&$form, FormStateInterface $form_state) {
+
+  if ($form_state->getValue('persistent_login', FALSE)) {
+    \Drupal::service('persistent_login.token_handler')->setNewSessionToken(\Drupal::service('current_user')->id());
+  }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function persistent_login_user_logout($account) {
+  \Drupal::service('persistent_login.token_handler')->clearSessionToken();
+}
+
+/**
+ * Implements hook_cron().
+ */
+function persistent_login_cron() {
+  \Drupal::service('persistent_login.token_manager')->cleanupExpiredTokens();
+}

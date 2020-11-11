@@ -1,0 +1,4 @@
+general-styles:
+  css:
+    theme:
+      css/theme/varbase-styleguide-general-styles.theme.css: { }

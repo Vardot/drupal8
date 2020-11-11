@@ -1,0 +1,25 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.varbase_heroslider_media.field_brief
+    - field.field.node.varbase_heroslider_media.field_link
+    - field.field.node.varbase_heroslider_media.field_media_single
+    - node.type.varbase_heroslider_media
+  module:
+    - user
+id: node.varbase_heroslider_media.teaser
+targetEntityType: node
+bundle: varbase_heroslider_media
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_brief: true
+  field_link: true
+  field_media_single: true
+  langcode: true
+  content_moderation_control: true

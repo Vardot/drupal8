@@ -1,0 +1,32 @@
+<div class="kanban-entry" data-id="{{ entity_id }}" data-type="{{ entity_type }}"
+     style="border: 1px solid {{ entity_type_config.color }};
+            color: {{ entity_type_config.color }};
+            background-color: {{ item_options.background_color }}">
+
+  <span class="node-type-label">{{ entity_type_config.label }}</span>
+  <div class="user-info">
+    {% if user_picture %}
+      <span class="user-picture"><img src="{{ user_picture }}" alt="{{ entity.username }}" /></span>
+    {% endif %}
+    <span class="username">{{ entity.username }}</span>
+  </div>
+  <span class="node-title"><a href="{{ operation_links.add }}">{{ entity.entityLoaded.label }}</a></span>
+  <div class="node-publication-info">
+    <span class="workflow-state">{{ workflow_state }}</span>
+    {% if entity.status %}
+      {% if entity.entityLoaded.created.value %}
+        <span class="publish-on">{{ entity.entityLoaded.created.value | date("d.m.Y - H:i") }}</span>
+      {% endif %}
+    {% else %}
+      {% if entity.entityLoaded.publish_on.value %}
+        <span class="publish-on">{{ "Planned"|t }}: {{ entity.entityLoaded.publish_on.value | date("d.m.Y - H:i") }}</span>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <ul class="node-actions">
+    <li><a class="node-action node-edit-link" href="{{ operation_links.edit }}?destination={{ path('content_kanban.kanban') }}" title="{{ "Edit"|t }}">{{ "Edit"|t }}</a></li>
+    <li><a class="node-action node-delete-link" href="{{ operation_links.delete}}?destination={{ path('content_kanban.kanban') }}" title="{{ "Delete"|t }}">{{ "Delete"|t }}</a></li>
+  </ul>
+
+</div>

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.varbase_heroslider_media
+  module:
+    - path
+id: node.varbase_heroslider_media.path
+field_name: path
+entity_type: node
+bundle: varbase_heroslider_media
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

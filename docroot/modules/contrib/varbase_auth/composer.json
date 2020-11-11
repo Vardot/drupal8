@@ -1,0 +1,50 @@
+{
+  "name": "drupal/varbase_auth",
+  "description": "Varbase Social Single Sign-On: Adds single sign-on using existing information from a social networking service such as Facebook, Twitter or Google+",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_auth",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_auth",
+    "source": "http://cgit.drupalcode.org/varbase_auth"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/social_api": "~2.0",
+    "drupal/social_auth": "~2.0",
+    "drupal/social_auth_google": "~2.0",
+    "drupal/social_auth_facebook": "~2.0",
+    "drupal/social_auth_twitter": "~2.0",
+    "drupal/social_auth_linkedin": "~2.0"
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true
+  }
+}

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: node_type_varbase_heroslider_media
+action: access_denied
+allow_override: 0
+redirect: ''
+redirect_code: 301

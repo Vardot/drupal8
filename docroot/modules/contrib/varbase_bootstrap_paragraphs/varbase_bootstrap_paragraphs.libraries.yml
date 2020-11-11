@@ -1,0 +1,55 @@
+# Varbase Bootstrap Paragraphs default base styling.
+vbp-default:
+  css:
+    base:
+      css/base/vbp-default.base.css: {}
+  dependencies:
+    - core/jquery
+    
+# Varbase Bootstrap Paragraphs default admin styling.
+vbp-default-admin:
+  css:
+    base:
+      css/base/vbp-default.admin.css: {}
+  js:
+    js/vbp-scripts.admin.js: {}
+
+# Varbase Bootstrap Paragraphs colors theme.
+vbp-colors:
+  css:
+    theme:
+      css/theme/vbp-colors.theme.css: {}
+
+# ------------------------------------------------------------------------------
+# Libraries for Varbase Bootstrap Paraghraph types.
+# ------------------------------------------------------------------------------
+
+# Varbase Bootstrap Paragraphs accordion component.
+vbp-accordion:
+  css:
+    component:
+      css/component/vbp-accordion.component.css: {}
+
+# Varbase Bootstrap Paragraphs carousel component.
+vbp-carousel:
+  css:
+    component:
+      css/component/vbp-carousel.component.css: {}
+
+# Varbase Bootstrap Paragraphs image component.
+vbp-image:
+  css:
+    component:
+      css/component/vbp-image.component.css: {}
+
+# Varbase Bootstrap Paragraphs modal component.
+vbp-modal:
+  css:
+    component:
+      css/component/vbp-modal.component.css: {}
+
+# Varbase Bootstrap Paragraphs tabs component.
+vbp-tabs:
+  css:
+    component:
+      css/component/vbp-tabs.component.css: {}

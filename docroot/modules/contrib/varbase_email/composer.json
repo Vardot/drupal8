@@ -1,0 +1,40 @@
+{
+  "name": "drupal/varbase_email",
+  "description": "Varbase email template",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_emails",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_email",
+    "source": "http://cgit.drupalcode.org/varbase_email"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/core": "^9 || ~10.0.0",
+    "drupal/swiftmailer": "~2.0"
+  },
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true
+  }
+}

@@ -1,0 +1,210 @@
+// Varbase Bootstrap Paragraphs Default base styling.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../../node_modules/bootstrap/scss/variables"; // Bootstrap variables.
+@import "../../node_modules/rfs/scss";                 // RFS ~9.0 mixins.
+// -----------------------------------------------------------------------------
+
+.paragraph {
+  margin-left: 0;
+  margin-right: 0;
+
+  > {
+    .paragraph__column {
+      @include padding-bottom($jumbotron-padding);
+      
+      .paragraph {
+        > {
+          .paragraph__column {
+            float: none;
+            
+            .paragraph {
+              > {
+                .paragraph__column {
+                  float: none;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      div {
+        > {
+          .paragraph {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+      
+      > {
+        .tab-content {
+          > {
+            .tab-pane {
+              > {
+                .paragraph {
+                  width: 100%;
+                  margin-right: 0;
+                  margin-left: 0;
+                  left: 0;
+                  right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+
+    }
+  }
+  // Nesting paragraphs.
+  .paragraph {
+    .bg-edge2edge,
+    &.bg-edge2edge {
+      width: 100%;
+      position: initial;
+      margin: 0;
+    }
+
+    .paragraph {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      position: initial;
+    }
+  }
+  
+  // Columns Modifiers inside of Columns Element.
+  &.paragraph--type--bp-columns {
+    .paragraph--type--bp-columns__5col {
+      position: relative;
+      min-height: 1px;
+      @include padding-left(0.9375rem);
+      @include padding-right(0.9375rem);
+
+      @media (min-width: 768px) {
+        float: left;
+        width: 20%;
+      }
+    }
+
+    .paragraph--type--bp-columns__6col {
+
+      @include make-col-ready();
+
+      @include media-breakpoint-up(md) {
+        @include make-col(2);
+      }
+
+    }
+  }
+
+}
+
+.paragraph__column {
+  @include padding(0 1.5625rem);
+}
+
+.paragraph--type--bp-carousel {
+  .paragraph {
+    &:last-of-type {
+      > {
+        .paragraph__column {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.paragraph--type--bp-columns {
+  .paragraph {
+    &:last-of-type {
+      > {
+        .paragraph__column {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.paragraph--type--bp-columns-three-uneven {
+  .paragraph {
+    > {
+      .paragraph__column {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.paragraph--type--bp-tabs {
+  .paragraph {
+    &:last-of-type {
+      > {
+        .paragraph__column {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// Resets Base Paragraph Styling for Nested Paragraphs.
+.modal {
+  .modal-body {
+    .paragraph {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      position: initial;
+    }
+  }
+
+  .modal-footer {
+    .paragraph {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      position: initial;
+    }
+  }
+}
+
+.paragraph--type--bp-columns__1col {
+  .paragraph.paragraph--width--narrow {
+    > {
+      .paragraph__column {
+        @include make-col-ready();
+
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+          @include make-col-offset(3);
+        }
+
+        @include media-breakpoint-up(lg) {
+          @include make-col(6);
+          @include make-col-offset(3);
+        }
+
+        @include media-breakpoint-up(xl) {
+          @include make-col(6);
+          @include make-col-offset(3);
+        }
+
+      }
+    }
+  }
+}
+
+.background-style {
+  background-size: cover;
+  background-repeat: no-repeat;
+}

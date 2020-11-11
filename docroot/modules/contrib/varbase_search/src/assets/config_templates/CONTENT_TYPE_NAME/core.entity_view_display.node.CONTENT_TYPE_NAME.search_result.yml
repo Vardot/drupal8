@@ -1,0 +1,127 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.CONTENT_TYPE_NAME.search_result
+    - field.field.node.CONTENT_TYPE_NAME.body
+    - field.field.node.CONTENT_TYPE_NAME.field_meta_tags
+    - field.field.node.CONTENT_TYPE_NAME.field_yoast_seo
+    - node.type.CONTENT_TYPE_NAME
+  module:
+    - ds
+    - field_group
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bs_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          main:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      main:
+        - group_authoring_information
+        - node_author
+        - group_content_wrapper
+        - node_post_date
+        - node_title
+        - search_api_excerpt
+        - node_link
+    fields:
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_short
+      node_author:
+        plugin_id: node_author
+        weight: 1
+        label: hidden
+        formatter: author
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h5
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_link:
+        plugin_id: node_link
+        weight: 4
+        label: hidden
+        formatter: default
+  field_group:
+    group_authoring_information:
+      children:
+        - node_author
+        - node_post_date
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: authoring-information
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Authoring information'
+      region: hidden
+    group_content_wrapper:
+      children:
+        - node_title
+        - search_api_excerpt
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: content-wrapper
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Content wrapper'
+      region: hidden
+id: node.CONTENT_TYPE_NAME.search_result
+targetEntityType: node
+bundle: CONTENT_TYPE_NAME
+mode: search_result
+content:
+  search_api_excerpt:
+    weight: 3
+    region: main
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  links: true
+  langcode: true

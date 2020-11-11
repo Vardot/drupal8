@@ -1,0 +1,14 @@
+name: 'Varbase Search'
+description: 'Provides search configuration, and offering search capabilities.'
+type: module
+package: Varbase
+core_version_requirement: ^9
+dependencies: []
+install:
+  - search_api
+  - search_api_db
+
+# Information added by Drupal.org packaging script on 2020-10-18
+version: '9.0.0-alpha1'
+project: 'varbase_search'
+datestamp: 1603062151

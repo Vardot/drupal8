@@ -1,0 +1,6 @@
+roleassign.settings:
+  title: 'Role assign'
+  parent: entity.user.collection
+  description: "Define the roles that can be assigned via the 'Assign roles' permission."
+  weight: 10
+  route_name: roleassign.settings

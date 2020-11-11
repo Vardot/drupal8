@@ -1,0 +1,85 @@
+DRD Agent 8.x-3.13, 2020-01-31
+------------------------------
+Issue #3110284 by jurgenhaas: TypeError: Return value of Drupal/drd_agent/Agent/Action/Base::getDebugMode() must be of the type boolean, null returned
+
+DRD Agent 8.x-3.12, 2019-12-24
+------------------------------
+Fix missing arguments when action class got instantiated
+
+DRD Agent 8.x-3.11, 2019-12-23
+------------------------------
+Remove phar library and include agent code directly in module
+Update code style
+Workaround to handle class loader usage in settings.php
+Loosen return type for decrypt function
+Issue #3098760 by jurgenhaas: Get ready for Drupal 9
+Issue #3066415 by Mohammad Fayoumi, jurgenhaas: Declare the 8.3.x core as a dependency inside drd_agent's info file
+Issue #3003240 by chipway: Namespace Dependencies in .info.yml
+
+DRD Agent 8.x-3.9, 2019-09-05
+-----------------------------
+Disable route normalizers for drd agent
+Issue #3072250 by Dave.nb, jurgenhaas: Remote maintenance mode drops DRD support
+Issue #3044795 by jcnventura: DRD agent broken with migration to gitlab
+
+DRD Agent 8.x-3.8, 2019-04-01
+-----------------------------
+Issue #3044795 by jcnventura: DRD agent broken with migration to gitlab
+
+DRD Agent 8.x-3.7, 2018-04-25
+-----------------------------
+Download library over https
+Replace serialize/unserialze with json_encode/json_decode
+Issue #2933501 by jurgenhaas, rashid_786: coding standard issue - short array ( [] ) should be used
+Add recommended modules
+Issue #2280565 by jurgenhaas: Store monitoring results and add a requirements record
+
+DRD Agent 8.x-3.6, 2017-11-13
+-----------------------------
+Issue #2922706 by jurgenhaas: Implement dashboard authorization by server secret
+
+DRD Agent 8.x-3.5, 2017-11-07
+-----------------------------
+Issue #2921346 by jurgenhaas: Comply with coding standard
+Issue #2919986 by jurgenhaas: Check the OTT functionality
+
+DRD Agent 8.x-3.4, 2017-10-02
+-----------------------------
+Remove symfony dependency from agent
+Issue #2912146 by jurgenhaas: Make it Drush 9 compatibel
+Issue #2905629 by jurgenhaas: BaseInterface PHP error when trying to access domain page
+Issue #2899765 by jurgenhaas: Add missing dependencies
+Issue #2856313: No configure link in module listing
+Issue #2893772 by jurgenhaas, tresti88: Problem loading phar on some Plesk/OpCache combinations
+
+DRD Agent 8.x-3.3, 2017-06-10
+-----------------------------
+  * Improve the agent to support file downloads
+  * Fix redirect to be trusted after authorisation
+
+DRD Agent 8.x-3.2, 2017-05-12
+-----------------------------
+  * Load the library only once and fix bug with loading the CCS for the authorisation form
+  * Improve loading the library and ensure to load it only once
+  * Issue #2877807 by jurgenhaas: Make sure we load the library only once and don't re-declare constants
+  * Add missing class
+
+DRD Agent 8.x-3.1, 2017-05-10
+-----------------------------
+  * Implement interactive dashboard authorisation
+
+DRD Agent 8.x-3.0, 2017-02-26
+-----------------------------
+  * Publish officially
+
+DRD Agent 8.x-3.0-rc4, 2017-02-03
+---------------------------------
+  * Issue #2841146 by jmolivas: Relocates commands services registration to console.services.yml file
+
+DRD Agent 8.x-3.0-rc3, 2017-01-04
+---------------------------------
+  * Issue #2840768 by jurgenhaas: Move the phar library into own project and change version schema
+
+DRD Agent 8.x-3.0-rc2, 2017-01-03
+---------------------------------
+  * Issue #2840224 by jmolivas: Update drupal console rc13 namespace changes
