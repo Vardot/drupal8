@@ -7,7 +7,7 @@
 name: 'app'
 
 # The runtime the application uses.
-type: 'php:7.2'
+type: 'php:7.3'
 
 # The relationships of the application with services or other applications.
 #
@@ -71,7 +71,7 @@ web:
             # The folder from which to serve static assets, for this location.
             #
             # This is a filesystem path, relative to the application root.
-            root: 'web'
+            root: 'docroot'
 
             # How long to allow static assets from this location to be cached.
             #
