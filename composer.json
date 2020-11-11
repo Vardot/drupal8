@@ -37,17 +37,14 @@
     "drupal/drupal-library-installer-plugin": "^0.3",
     "webflo/drupal-finder": "~1.0",
     "webmozart/path-util": "~2.0",
+    "vardot/varbase": "~9.0",
+    "vardot/varbase-updater": "~2.0",
     "drupal/redis": "^1.2",
     "drupal/console": "^1.9",
     "drush/drush": "^10.1",
-    "platformsh/config-reader": "^2.3",
-    "vardot/varbase": "~9.0",
-    "vardot/varbase-updater": "~2.0"
+    "platformsh/config-reader": "^2.3"
   },
   "require-dev": {
-    "drupal/core-dev": "~9.0",
-    "drupal/console": "~1.0",
-    "drush/drush": "~10.0",
     "phing/phing": "~2.0",
     "drupal/drupal-extension": "~4.0",
     "emuse/behat-html-formatter": "^0.2.0"
