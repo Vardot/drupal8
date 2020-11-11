@@ -29,7 +29,7 @@ disk: 2048
 
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 mounts:
-    '/web/sites/default/files':
+    '/docroot/sites/default/files':
         source: local
         source_path: 'files'
     '/tmp':
